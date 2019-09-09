@@ -1,0 +1,26 @@
+package com.styzf.core.common.base;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * @author yangzf
+ * @date 2019年3月9日
+ * @param <D>
+ */
+public interface BaseService<D extends BaseDTO> {
+	public List<D> baseList(D d);
+	
+	public Pager<D> basePage(D d, PageParams pageParams);
+	
+	public D baseInsertOrUpdate(D d);
+	
+	/**
+	 * 逻辑删除接口
+	 * @param id 主键id
+	 * @param d 用于逻辑删除时处理其他的变量
+	 */
+	public void baseDeleteById(Serializable id, D d);
+	
+	public D baseGetById(Serializable id);
+}

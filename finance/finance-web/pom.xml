@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+	  <groupId>com.styzf</groupId>
+	  <artifactId>finance</artifactId>
+	  <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>finance-web</artifactId>
+    <!-- 配置依赖关系 -->
+    <dependencies>
+        <dependency>
+           <groupId>com.styzf</groupId>
+           <artifactId>web</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.styzf</groupId>
+            <artifactId>finance-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!-- 配置servlet-api、jsp-api、el-api依赖(jsp视图) -->
+       <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 配置tomcat-juli(我们使用tomcat7) -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-juli</artifactId>
+        </dependency>
+        <!-- 配置tomcat启动器(tomcat容器相关jar不打到war包中) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <!-- 配置jstl依赖 -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+	    <dependency>
+	       <groupId>commons-lang</groupId>
+           <artifactId>commons-lang</artifactId>
+	    </dependency>
+	    <dependency>  
+          <groupId>org.aspectj</groupId>  
+          <artifactId>aspectjrt</artifactId>  
+        </dependency>  
+        <dependency>  
+          <groupId>org.aspectj</groupId>  
+          <artifactId>aspectjweaver</artifactId>  
+        </dependency> 
+    </dependencies>
+     <build>
+        <plugins>
+            <!--SpringBoot的Maven插件(集成运行与打包)-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
