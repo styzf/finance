@@ -13,6 +13,11 @@ public interface BaseService<D extends BaseDTO> {
 	
 	public Pager<D> basePage(D d, PageParams pageParams);
 	
+	/**
+	 * TODO 最好把base的插入和更新再写一个，插入对id进行校验，更新对id进行设置
+	 * @param d
+	 * @return
+	 */
 	public D baseInsertOrUpdate(D d);
 	
 	/**

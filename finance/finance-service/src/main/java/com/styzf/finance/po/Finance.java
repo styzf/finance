@@ -50,4 +50,7 @@ public class Finance extends BasePO {
 
     @ApiModelProperty("日期")
     private Integer day;
+    
+    @ApiModelProperty("备注")
+    private String remark;
 }

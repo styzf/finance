@@ -48,4 +48,7 @@ public class FinanceDTO extends BaseDTO {
     
     @ApiModelProperty("日期")
     private Integer day;
+    
+    @ApiModelProperty("备注")
+    private String remark;
 }

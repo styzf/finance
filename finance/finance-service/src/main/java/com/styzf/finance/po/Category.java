@@ -34,5 +34,7 @@ public class Category extends BasePO {
     
     @ApiModelProperty(value = "父类id")
     private Long parentId;
-
+    
+    @ApiModelProperty(value = "分类关键key")
+    private String categoryKey;
 }

@@ -31,6 +31,7 @@ public class CategoryDTO extends BaseDTO {
 
     @ApiModelProperty(value = "父类id")
     private Long parentId;
-
-
+    
+    @ApiModelProperty(value = "关键key")
+    private String categoryKey;
 }

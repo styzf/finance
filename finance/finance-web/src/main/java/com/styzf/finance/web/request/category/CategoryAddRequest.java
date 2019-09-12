@@ -38,5 +38,9 @@ public class CategoryAddRequest extends BaseRequest {
 	@ApiModelProperty(value = "父类id")
 	private Long parentId;
 	
+	@NotNull(message = "分类查找key不能为空")
+	@ApiModelProperty(value = "分类查找key")
+	private String categoryKey;
+	
 }
 
