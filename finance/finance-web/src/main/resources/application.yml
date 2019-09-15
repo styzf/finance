@@ -5,7 +5,7 @@ styzf:
   config:
     dubbo:
 #      zookeeper-address: 192.168.114.129:2181,192.168.114.130:2181,192.168.114.131:2181
-      zookeeper-address: 192.168.114.137:2181
+      zookeeper-address: 192.168.114.138:2181
       owner: styzf
       application-version: 2.0
       consumer-version: styzf.2.0.0
@@ -36,7 +36,7 @@ styzf:
 spring:
   dubbo:
     appname: styzf-finance-web
-    registry: zookeeper://192.168.114.137:2181
+    registry: zookeeper://192.168.114.138:2181
     protocol: dubbo
     port: 60061
   mvc:

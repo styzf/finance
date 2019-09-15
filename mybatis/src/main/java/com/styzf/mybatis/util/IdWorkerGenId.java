@@ -1,7 +1,6 @@
 package com.styzf.mybatis.util;
 
 import com.styzf.core.common.util.IdWorker;
-import com.sun.corba.se.spi.ior.ObjectId;
 import tk.mybatis.mapper.genid.GenId;
 
 /**

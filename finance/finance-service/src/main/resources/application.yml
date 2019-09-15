@@ -1,7 +1,7 @@
 styzf:
   config:
     dubbo:
-      zookeeper-address: 192.168.114.137:2181
+      zookeeper-address: 192.168.114.138:2181
       owner: styzf
       application-version: 2.0
       provider-version: styzf.2.0.0
@@ -26,11 +26,11 @@ spring:
 #      suffix: .jsp
   dubbo:
     appname: styzf-finance-service
-    registry: zookeeper://192.168.114.137:2181
+    registry: zookeeper://192.168.114.138:2181
     protocol: dubbo
     port: 60062
   datasource:
-    url: jdbc:mysql://192.168.114.137:3306/my_finance?useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://192.168.114.138:3306/my_finance?useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver

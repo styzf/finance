@@ -27,11 +27,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-		<dependency>
-		    <groupId>org.apache.tomcat</groupId>
-		    <artifactId>tomcat-juli</artifactId>
-		    <scope>provided</scope>
-		</dependency>
 		<!-- 单元测试 -->
 		<dependency>
 		    <groupId>junit</groupId>
@@ -39,26 +34,12 @@
 		    <scope>test</scope>
 		</dependency>
 		<!-- servlet-api、jsp-api、el-api -->
-		<dependency>
-		    <groupId>org.apache.tomcat</groupId>
-		    <artifactId>tomcat-jsp-api</artifactId>
-		    <scope>provided</scope>
-		</dependency>
 		<!-- jstl -->
-		<dependency>
-		    <groupId>jstl</groupId>
-		    <artifactId>jstl</artifactId>
-		</dependency>
-		<!-- Spring4 -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-webmvc</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context-support</artifactId>
-		</dependency>
-			
+		<!--<dependency>-->
+		    <!--<groupId>jstl</groupId>-->
+		    <!--<artifactId>jstl</artifactId>-->
+		<!--</dependency>-->
+
 		<!-- apache工具组件 -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
@@ -106,5 +87,12 @@
 	           <directory>src/main/resources</directory>
 	       </resource>
 	   </resources>
+		<plugins>
+			<!--SpringBoot的Maven插件(集成运行与打包)-->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 </project>

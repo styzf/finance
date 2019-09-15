@@ -3,6 +3,7 @@ package com.styzf.finance.service;
 import com.styzf.core.common.base.BaseService;
 import com.styzf.finance.dto.finance.FinanceDTO;
 import com.styzf.finance.dto.finance.FinanceListData;
+import com.styzf.finance.dto.finance.FinanceRemarkDTO;
 
 import java.util.List;
 
@@ -16,5 +17,17 @@ import java.util.List;
  */
 public interface IFinanceService extends BaseService<FinanceDTO> {
 	
+	/**
+	 * 添加备注
+	 * @param dto
+	 */
+	void addRemark(FinanceRemarkDTO dto);
+	
+	/**
+	 * 根据年月查找数据
+	 * @param year 年
+	 * @param month 月
+	 * @return 页面显示数据
+	 */
 	List<FinanceListData> getFinance(Integer year, Integer month);
 }

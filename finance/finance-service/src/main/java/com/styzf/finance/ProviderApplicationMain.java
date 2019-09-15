@@ -1,5 +1,6 @@
 package com.styzf.finance;
 
+import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

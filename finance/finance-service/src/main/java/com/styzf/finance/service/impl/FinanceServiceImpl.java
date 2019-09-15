@@ -7,6 +7,7 @@ import com.styzf.finance.dto.category.CategoryDTO;
 import com.styzf.finance.dto.category.CategoryTree;
 import com.styzf.finance.dto.finance.FinanceDTO;
 import com.styzf.finance.dto.finance.FinanceListData;
+import com.styzf.finance.dto.finance.FinanceRemarkDTO;
 import com.styzf.finance.po.Finance;
 import com.styzf.finance.service.ICategoryService;
 import com.styzf.finance.service.IFinanceService;
@@ -38,6 +39,22 @@ public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> imp
 	
 	@Autowired
 	private ICategoryService categoryService;
+	
+	@Override
+	public void addRemark(FinanceRemarkDTO dto) {
+		String remark = dto.getRemark();
+		FinanceDTO addDTO = ConvertUtil.convert(dto, FinanceDTO.class);
+		addDTO.setRemark(null);
+		List<FinanceDTO> list = baseList(addDTO);
+		if (CollectionUtils.isEmpty(list)) {
+			addDTO.setId(null);
+			addDTO.setRemark(remark);
+		} else {
+			addDTO = list.get(0);
+			addDTO.setRemark(remark);
+		}
+		baseInsertOrUpdate(addDTO);
+	}
 	
 	@Override
 	public List<FinanceListData> getFinance(Integer year, Integer month) {

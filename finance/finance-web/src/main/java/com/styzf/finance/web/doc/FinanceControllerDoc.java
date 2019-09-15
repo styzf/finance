@@ -3,7 +3,7 @@ package com.styzf.finance.web.doc;
 
 import com.styzf.core.web.response.Response;
 import com.styzf.finance.web.request.finance.FinanceAddRequest;
-import com.styzf.finance.web.request.finance.FinanceUpdateRequest;
+import com.styzf.finance.web.request.finance.FinanceRemarkRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -27,6 +27,9 @@ public interface FinanceControllerDoc {
 	
 	@ApiOperation("添加账单")
 	public Response addFinance(FinanceAddRequest request);
+	
+	@ApiOperation("添加备注")
+	public Response addRemark(FinanceRemarkRequest request);
 	
 }
 
