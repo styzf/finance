@@ -9,6 +9,7 @@ import com.styzf.finance.dto.category.CategoryDTO;
 import com.styzf.finance.po.Category;
 import com.styzf.finance.service.ICategoryService;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.styzf.mybatis.constant.DeleteEnum;
 import com.styzf.mybatis.util.FnUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -95,7 +96,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> 
 		Weekend<Category> weekend = Weekend.of(Category.class);
 		weekend.weekendCriteria().
 				andLike(Category::getName, "%" + categoryDTO.getName() + "%").
-				andEqualTo(Category::getDeleteFlag, Boolean.TRUE);
+				andEqualTo(Category::getDeleteFlag, DeleteEnum.EXIST.getStatus());
 		return weekend;
 	}
 	

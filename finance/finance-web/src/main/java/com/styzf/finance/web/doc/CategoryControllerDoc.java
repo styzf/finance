@@ -31,7 +31,7 @@ public interface CategoryControllerDoc {
 //			@ApiImplicitParam(name="page",value = "页码",required=true,paramType="path",dataType="int"),
 //			@ApiImplicitParam(name="size",value = "每页记录数",required=true,paramType="path",dataType="int")
 //	})
-	public Response getCategory(Integer page, Integer size,  String name);
+	public Response getCategory(Integer page, Integer size,  String name, Long parentId);
 	
 	/**
 	 * 根据父分类id获取分类树列表

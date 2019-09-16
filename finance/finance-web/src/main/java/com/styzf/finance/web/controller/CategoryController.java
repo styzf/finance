@@ -36,9 +36,10 @@ public class CategoryController implements CategoryControllerDoc {
 	
 	@Override
 	@GetMapping
-	public Response getCategory(Integer page, Integer size, String name) {
+	public Response getCategory(Integer page, Integer size, String name, Long parentId) {
 		CategoryDTO dto = new CategoryDTO();
 		dto.setName(name);
+		dto.setParentId(parentId);
 		Pager<CategoryDTO> pager = categoryService.basePage(dto, new PageParams(page, size));
 		return SuccessResponseData.newInstance(pager);
 	}
