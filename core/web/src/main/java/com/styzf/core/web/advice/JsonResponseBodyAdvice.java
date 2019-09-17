@@ -32,6 +32,7 @@ public class JsonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     @Autowired
     private StyzfSettings settings;
     
+    @Override
     public Object beforeBodyWrite(Object object, MethodParameter methodParameter, MediaType mediaType, Class clazz, ServerHttpRequest request, ServerHttpResponse response) {
         ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse().setHeader("Cache-Control", "no-cache,no-store");
         String contextPath = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getContextPath();
@@ -63,6 +64,7 @@ public class JsonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
         return data;
     }
     
+    @Override
     public boolean supports(MethodParameter methodParameter, Class clazz) {
         if (clazz.isAssignableFrom(MappingJackson2HttpMessageConverter.class)) {
             return true;

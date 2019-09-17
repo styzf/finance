@@ -18,6 +18,7 @@ import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -34,7 +35,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> 
 	
 	@Override
 	public CategoryTree getCategoryTree(Long parentId) {
-		if (null == parentId) {
+		if (Objects.isNull(parentId)) {
 			parentId = CategoryConstant.ROOT_CATEGORY_ID;
 		}
 		CategoryDTO root = baseGetById(parentId);
@@ -49,7 +50,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> 
 		}
 		
 		categoryTree.setChildList(childList);
-		childList.stream().forEach(child -> {getCategoryTree(child);});
+		childList.stream().forEach(this::getCategoryTree);
 		
 		return categoryTree;
 	}
@@ -81,7 +82,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> 
 	@Override
 	protected void insertBefore(Category category) {
 		Long parentId = category.getParentId();
-		if (null == parentId) {
+		if (Objects.isNull(parentId)) {
 			parentId = CategoryConstant.ROOT_CATEGORY_ID;
 		}
 		super.insertBefore(category);
@@ -90,7 +91,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> 
 	// 分类名称模糊查询
 	@Override
 	protected Example selectPage(CategoryDTO categoryDTO) {
-		if (null == categoryDTO || StringUtils.isNull(categoryDTO.getName())) {
+		if (Objects.isNull(categoryDTO) || StringUtils.isNull(categoryDTO.getName())) {
 			return null;
 		}
 		Weekend<Category> weekend = Weekend.of(Category.class);

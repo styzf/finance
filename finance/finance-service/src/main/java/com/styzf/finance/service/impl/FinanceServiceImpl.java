@@ -19,10 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.weekend.Weekend;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -59,10 +56,10 @@ public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> imp
 	@Override
 	public List<FinanceListData> getFinance(Integer year, Integer month) {
 		Calendar cal = Calendar.getInstance();
-		if (null == year) {
+		if (Objects.isNull(year)) {
 			year = cal.get(Calendar.YEAR);
 		}
-		if (null == month) {
+		if (Objects.isNull(month)) {
 			month = cal.get(Calendar.MONTH )+1;
 		}
 		
@@ -90,8 +87,8 @@ public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> imp
 		for (CategoryTree tree: list) {
 			FinanceListData data = ConvertUtil.convert(tree, FinanceListData.class);
 			List<FinanceDTO> dtoList = getFinanceList(data.getId(), year, month);
-			data.setData(dtoList);
-			data.setChild(isChild);
+			data.setData(dtoList).
+			     setChild(isChild);
 			dataList.add(data);
 			List<CategoryTree> childList = tree.getChildList();
 			setData(childList, dataList, year, month, true);
