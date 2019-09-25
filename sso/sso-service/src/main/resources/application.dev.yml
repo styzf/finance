@@ -1,0 +1,63 @@
+styzf:
+  config:
+    dubbo:
+      zookeeper-address: 192.168.114.137:2181
+      owner: styzf
+      application-version: 2.0
+      provider-version: styzf.2.0.0
+      port: 60062
+      timeout: 50000
+      retries: 0
+      threads: 100
+      payload: 1000000000
+
+server:
+    port: 60093
+    session:
+        timeout: 30
+    context-path: /styzf-finance
+    tomcat:
+        uri-encoding: UTF-8
+
+spring:
+#   mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp
+  dubbo:
+    appname: styzf-finance-service
+    registry: zookeeper://192.168.13.133:2181
+    protocol: dubbo
+    port: 60062
+  datasource:
+#    url: jdbc:mysql://192.168.114.137:3306/my_finance?useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://192.168.13.133:3306/my_finance?useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+#mybatis
+mybatis:
+  type-aliases-package: classpath*:com.styzf.finance.po
+  mapper-locations: classpath*:mybatis/*Mapper.xml
+  configurationProperties:
+  configuration:
+     map-underscore-to-camel-case: true
+
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL
+
+auth:
+  tokenValiditySeconds: 1200  #token存储到redis的过期时间
+  clientId: XcWebApp
+  clientSecret: XcWebApp
+  cookieDomain: xuecheng.com
+  cookieMaxAge: -1
+encrypt:
+  key-store:
+    location: classpath:/xc.keystore
+    secret: xuechengkeystore
+    alias: xckey
+    password: xuecheng

@@ -19,11 +19,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Swagger2Config {
     @Bean
     public Docket springfoxDocket(ApiInfoProperties apiInfo) {
-        Docket docket = new Docket(DocumentationType.SWAGGER_2);
-        docket.ignoredParameterTypes(new Class[] { ApiIgnore.class });
-        docket.apiInfo(apiInfo(apiInfo));
-        docket.pathMapping("/").select().paths(PathSelectors.regex("^.*(?<!error)$")).build();
-        docket.select().apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).build();
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .ignoredParameterTypes(new Class[] { ApiIgnore.class })
+                .apiInfo(apiInfo(apiInfo))
+                .pathMapping("/").select().paths(PathSelectors.regex("^.*(?<!error)$")).build()
+                .select().apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).build();
         return docket;
     }
     

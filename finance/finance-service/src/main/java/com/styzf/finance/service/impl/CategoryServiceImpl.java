@@ -3,14 +3,12 @@ package com.styzf.finance.service.impl;
 import com.styzf.core.common.util.ConvertUtil;
 import com.styzf.core.common.util.StringUtils;
 import com.styzf.finance.constant.CategoryConstant;
-import com.styzf.finance.dto.category.CategoryTree;
-import com.styzf.mybatis.base.BaseServiceImpl;
 import com.styzf.finance.dto.category.CategoryDTO;
+import com.styzf.finance.dto.category.CategoryTree;
 import com.styzf.finance.po.Category;
 import com.styzf.finance.service.ICategoryService;
-import com.alibaba.dubbo.config.annotation.Service;
+import com.styzf.mybatis.base.BaseServiceImpl;
 import com.styzf.mybatis.constant.DeleteEnum;
-import com.styzf.mybatis.util.FnUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -28,9 +26,8 @@ import java.util.Objects;
  * @author yangzf
  * @since 2019-04-05
  */
-@Service(interfaceClass = ICategoryService.class)
 @Component
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> implements ICategoryService {
 	
 	@Override

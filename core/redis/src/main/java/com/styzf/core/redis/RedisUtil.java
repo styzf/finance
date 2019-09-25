@@ -23,7 +23,11 @@ public class RedisUtil {
     @Autowired
     @Qualifier("stringRedisTemplate")
     private StringRedisTemplate stringRedisTemplate;
-
+    
+    public Long getExpire(String key) {
+        return stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
+    }
+    
     public <T> Boolean setObject(String key, T t) {
         return setObject(key , t, 12 * 60 * 60L, TimeUnit.SECONDS);
     }

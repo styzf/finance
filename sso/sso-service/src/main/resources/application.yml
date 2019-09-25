@@ -1,0 +1,91 @@
+styzf:
+  dateConverter:
+    date-format:
+      yyyy-MM-dd;yyyy-MM-dd HH:mm:ss
+  config:
+    settings:
+      notResponseAopUrl:
+        - /swagger-resources/configuration/ui
+        - /swagger-resources
+        - /v2/api-docs
+        - /swagger-resources/configuration/security
+        - /swagger-ui.html
+        - /webjars/**
+  apiInfo:
+    title: STYZF-TEST REST API
+    description: STYZF财务管理 API
+    version: 2.0.0
+    termsOfServiceUrl:
+    contact:
+      name: styzf
+      url:
+      email:
+    license:
+    licenseUrl:
+    pathsRegex: ^.*(?<!error)$
+
+server:
+  port: 60094
+  session:
+    timeout: 30
+  context-path: /styzf-sso
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  #   mvc:
+  #    view:
+  #      prefix: /WEB-INF/jsp/
+  #      suffix: .jsp
+  datasource:
+    #    url: jdbc:mysql://192.168.114.137:3306/my_finance?useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://192.168.13.133:3306/my_user?useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: sso-auth
+#mybatis
+mybatis:
+  type-aliases-package: classpath*:com.styzf.finance.po
+  mapper-locations: classpath*:mybatis/*Mapper.xml
+  configurationProperties:
+  configuration:
+    map-underscore-to-camel-case: true
+
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL
+
+auth:
+  tokenValiditySeconds: 1200  #token存储到redis的过期时间
+  clientId: XcWebApp
+  clientSecret: XcWebApp
+  cookieDomain: xuecheng.com
+  cookieMaxAge: -1
+encrypt:
+  key-store:
+    location: classpath:/xc.keystore
+    secret: xuechengkeystore
+    alias: xckey
+    password: xuecheng
+
+
+eureka:
+  client:
+    registerWithEureka: true #服务注册开关
+    fetchRegistry: true #服务发现开关
+    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址，多个中间用逗号分隔
+      defaultZone: ${EUREKA_SERVER:http://127.0.0.1:50101/eureka/}
+  instance:
+    prefer-ip-address:  true  #将自己的ip地址注册到Eureka服务中
+    ip-address: ${IP_ADDRESS:127.0.0.1}
+    instance-id: ${spring.application.name}:${server.port} #指定实例id
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+ribbon:
+  MaxAutoRetries: 2 #最大重试次数，当Eureka中可以找到服务，但是服务连不上时将会重试
+  MaxAutoRetriesNextServer: 3 #切换实例的重试次数
+  OkToRetryOnAllOperations: false  #对所有操作请求都进行重试，如果是get则可以，如果是post，put等操作没有实现幂等的情况下是很危险的,所以设置为false
+  ConnectTimeout: 5000  #请求连接的超时时间
+  ReadTimeout: 6000 #请求处理的超时时间

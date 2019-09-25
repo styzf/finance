@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.styzf.core.common.config.LocaleMessageSource;
 import com.styzf.core.common.exception.BaseException;
-import com.styzf.core.web.response.ErrorResponseData;
+import com.styzf.core.common.response.ErrorResponseData;
 import com.styzf.core.common.util.TraceContext;
 
 /**

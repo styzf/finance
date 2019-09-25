@@ -1,16 +1,15 @@
 package com.styzf.core.common.base;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * 页面参数对象
  * @author Gene
  *
  */
-@Data
 public class PageParams implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -39,5 +38,34 @@ public class PageParams implements Serializable{
 	    this.size = size;
 	    this.orderBy = orderBy;
 	}
-
+	
+	public int getPage() {
+		return page;
+	}
+	
+	public void setPage(Integer page) {
+		if (null == page || page < 0) {
+			return;
+		}
+		this.page = page;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public void setSize(Integer size) {
+		if (Objects.isNull(size) || size < 0) {
+			return;
+		}
+		this.size = size;
+	}
+	
+	public String getOrderBy() {
+		return orderBy;
+	}
+	
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
 }

@@ -18,8 +18,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import com.styzf.core.web.response.Response;
-import com.styzf.core.web.response.SuccessResponseData;
+import com.styzf.core.common.response.Response;
+import com.styzf.core.common.response.SuccessResponseData;
 import com.styzf.core.common.util.IPUtils;
 import com.styzf.core.common.util.TraceContext;
 import com.styzf.core.web.config.StyzfSettings;

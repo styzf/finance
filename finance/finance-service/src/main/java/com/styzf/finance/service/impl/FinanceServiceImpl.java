@@ -1,9 +1,6 @@
 package com.styzf.finance.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.styzf.core.common.util.ConvertUtil;
-import com.styzf.core.common.util.date.DateUtil;
-import com.styzf.finance.dto.category.CategoryDTO;
 import com.styzf.finance.dto.category.CategoryTree;
 import com.styzf.finance.dto.finance.FinanceDTO;
 import com.styzf.finance.dto.finance.FinanceListData;
@@ -19,7 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.weekend.Weekend;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -29,9 +29,8 @@ import java.util.*;
  * @author yangzf
  * @since 2019-08-10
  */
-@Service(interfaceClass = IFinanceService.class)
 @Component
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> implements IFinanceService {
 	
 	@Autowired

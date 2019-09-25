@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import java.util.Date;
 
 @Data
-public abstract class BaseDTO implements Serializable{
+public abstract class BaseDTO extends PageParams implements Serializable{
     private static final long serialVersionUID = -4083754097244748607L;
     
     /**

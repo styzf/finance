@@ -61,12 +61,27 @@
         
         <lombok.version>1.16.16</lombok.version>
         <logstash.version>4.11</logstash.version>
+
+        <springcloud.version>2.0.0.RELEASE</springcloud.version>
+        <okhttp.version>3.9.1</okhttp.version>
     </properties>
     
     <!-- 依赖管理配置(用于锁定指定版本) -->
     <dependencyManagement>
 	    <dependencies>
-	    	<dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <dependency>
 		        <groupId>org.projectlombok</groupId>
 		        <artifactId>lombok</artifactId>
 		        <version>${lombok.version}</version>

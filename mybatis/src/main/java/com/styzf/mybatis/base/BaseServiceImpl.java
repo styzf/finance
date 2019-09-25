@@ -26,6 +26,8 @@ import java.util.List;
 
 /**
  * 基础实现类
+ * @author styzf
+ * @date 2019-09-24
  * @param <P>
  * @param <D>
  */
@@ -57,10 +59,9 @@ public abstract class BaseServiceImpl<P extends BasePO,D extends BaseDTO>
 	}
 	
 	@Override
-	public Pager<D> basePage(D d, PageParams pageParams) {
-		if (pageParams == null) {
-			pageParams = new PageParams();
-		}
+	public Pager<D> basePage(D d) {
+		PageParams pageParams = ConvertUtil.convert(d, PageParams.class);
+		
 		pageBefore(d);
 		
 		if (null != d && null == d.getDeleteFlag()) {
@@ -199,10 +200,14 @@ public abstract class BaseServiceImpl<P extends BasePO,D extends BaseDTO>
 	
 	@Override
 	public D baseGetById (Serializable id) {
-		if (null == id) return null;
+		if (null == id) {
+			return null;
+		}
 		
 		P p = mapper.selectByPrimaryKey(id);
-		if (p == null) return null;
+		if (p == null) {
+			return null;
+		}
 		
 		D dto = newTclass(clazzD);
 		BeanUtils.copyProperties(p, dto);
