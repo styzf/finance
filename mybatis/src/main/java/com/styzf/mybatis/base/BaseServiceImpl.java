@@ -7,7 +7,7 @@ import com.styzf.core.common.base.BaseService;
 import com.styzf.core.common.base.PageParams;
 import com.styzf.core.common.base.Pager;
 import com.styzf.core.common.util.ConvertUtil;
-import com.styzf.core.common.util.StringUtils;
+import com.styzf.core.common.util.MyStringUtils;
 import com.styzf.core.common.util.date.DateUtil;
 import com.styzf.mybatis.constant.DeleteEnum;
 import com.styzf.mybatis.util.PagerUtil;
@@ -71,7 +71,7 @@ public abstract class BaseServiceImpl<P extends BasePO,D extends BaseDTO>
 		P p = ConvertUtil.convert(d, clazzP);
 		
 		String orderBy = pageParams.getOrderBy();
-		if (StringUtils.isEmpty(orderBy)) {
+		if (MyStringUtils.isEmpty(orderBy)) {
 			orderBy = "update_time DESC";
 		}
 		
@@ -171,7 +171,7 @@ public abstract class BaseServiceImpl<P extends BasePO,D extends BaseDTO>
 	@Override
 	public void baseDeleteById(Serializable id, D d) {
 		if (null == id ||
-				(id instanceof String && StringUtils.isNotNull((String) id))) {
+				(id instanceof String && MyStringUtils.isNotNull((String) id))) {
 			throw new RuntimeException("删除操作必须传递主键");
 		}
 

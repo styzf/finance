@@ -13,8 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.oauth2.client.http.StringSplitUtils;
 import org.springframework.web.client.RestTemplate;
 import tk.mybatis.spring.annotation.MapperScan;
+
+import java.util.Arrays;
 
 /**
  * 
@@ -35,8 +38,10 @@ import tk.mybatis.spring.annotation.MapperScan;
 public class SSOApplicationMain {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(SSOApplicationMain.class, args);
-        log.info(StringUtils.center(" styzf-sso start success! ", 80, "*"));
+//        SpringApplication.run(SSOApplicationMain.class, args);
+//        log.info(MyStringUtils.center(" styzf-sso start success! ", 80, "*"));
+        String[] split = StringSplitUtils.split("testmywill", "m");
+        System.out.println(Arrays.toString(split));
     }
     @Bean
     public RestTemplate restTemplate() {

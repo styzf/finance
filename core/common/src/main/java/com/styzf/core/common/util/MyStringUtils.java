@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringUtils extends org.apache.commons.lang3.StringUtils {
+public class MyStringUtils extends org.apache.commons.lang3.StringUtils {
     private static final String[] hex = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C",
             "0D", "0E", "0F", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E",
             "1F", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "30",
@@ -40,7 +40,35 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
             63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63,
             63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63 };
     private static char[] HEXCHAR = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
-
+    
+    /**
+     * {@link org.springframework.security.oauth2.client.http.StringSplitUtils}
+     * 源于该类，去除了分隔符只能为一个字符的限制
+     * @param toSplit
+     * @param delimiter
+     * @return
+     */
+    public static String[] split(String toSplit, String delimiter) {
+        Assert.hasLength(toSplit, "Cannot split a null or empty string");
+        Assert.hasLength(delimiter, "Cannot use a null or empty delimiter to split a string");
+        
+//        if (delimiter.length() != 1) {
+//            throw new IllegalArgumentException("Delimiter can only be one character in length");
+//        }
+        
+        int offset = toSplit.indexOf(delimiter);
+        
+        if (offset < 0) {
+            return null;
+        }
+        
+        String beforeDelimiter = toSplit.substring(0, offset);
+        String afterDelimiter = toSplit.substring(offset + 1);
+        
+        return new String[]{beforeDelimiter, afterDelimiter};
+    }
+    
+    
     public static String toHexString(byte[] b) {
         StringBuffer sb = new StringBuffer(b.length * 2);
         for (int i = 0; i < b.length; i++) {
@@ -394,10 +422,10 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * <p>驼峰转下划线</p>
      * 
      * <pre>
-     * StringUtils.camelToUnderline("testTest") = test_test
-     * StringUtils.camelToUnderline("TestTest") = test_test
-     * StringUtils.camelToUnderline("TestTest") = test_test
-     * StringUtils.camelToUnderline("TestTEST") = test_test
+     * MyStringUtils.camelToUnderline("testTest") = test_test
+     * MyStringUtils.camelToUnderline("TestTest") = test_test
+     * MyStringUtils.camelToUnderline("TestTest") = test_test
+     * MyStringUtils.camelToUnderline("TestTEST") = test_test
      * </pre>
      *  
      * @author styzf

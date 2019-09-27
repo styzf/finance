@@ -1,7 +1,7 @@
 package com.styzf.finance.service.impl;
 
 import com.styzf.core.common.util.ConvertUtil;
-import com.styzf.core.common.util.StringUtils;
+import com.styzf.core.common.util.MyStringUtils;
 import com.styzf.finance.constant.CategoryConstant;
 import com.styzf.finance.dto.category.CategoryDTO;
 import com.styzf.finance.dto.category.CategoryTree;
@@ -88,7 +88,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> 
 	// 分类名称模糊查询
 	@Override
 	protected Example selectPage(CategoryDTO categoryDTO) {
-		if (Objects.isNull(categoryDTO) || StringUtils.isNull(categoryDTO.getName())) {
+		if (Objects.isNull(categoryDTO) || MyStringUtils.isNull(categoryDTO.getName())) {
 			return null;
 		}
 		Weekend<Category> weekend = Weekend.of(Category.class);
