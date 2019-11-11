@@ -12,10 +12,7 @@ import com.styzf.sso.web.doc.AuthControllerDoc;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -44,15 +41,15 @@ public class AuthController implements AuthControllerDoc {
 
     @Override
     @PostMapping("/userlogin")
-    public Response login(LoginRequest loginRequest) {
-        if(Objects.isNull(loginRequest) || StringUtils.isEmpty(loginRequest.getUsername())){
-            throw new UserException("");
+    public Response login(@RequestBody LoginRequest loginRequest) {
+        if(Objects.isNull(loginRequest) || StringUtils.isEmpty(loginRequest.getUserName())){
+            throw new UserException("请输入用户名");
         }
         if(Objects.isNull(loginRequest) || StringUtils.isEmpty(loginRequest.getPassword())){
-            throw new UserException("");
+            throw new UserException("请输入密码");
         }
         //账号
-        String username = loginRequest.getUsername();
+        String username = loginRequest.getUserName();
         //密码
         String password = loginRequest.getPassword();
 

@@ -47,7 +47,7 @@ public class AuthService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-    public static final String XC_SERVICE_UCENTER_AUTH = "xc-service-ucenter-auth";
+    public static final String XC_SERVICE_UCENTER_AUTH = "sso-auth";
 
     //用户认证申请令牌，将令牌存储到redis
     public AuthToken login(String username, String password, String clientId, String clientSecret) {
