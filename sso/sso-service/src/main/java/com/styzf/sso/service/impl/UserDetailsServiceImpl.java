@@ -1,7 +1,8 @@
 package com.styzf.sso.service.impl;
 
+import com.styzf.finance.dto.user.MenuDTO;
+import com.styzf.finance.dto.user.UserExt;
 import com.styzf.sso.po.Menu;
-import com.styzf.sso.po.UserExt;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -49,9 +50,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return null;
         }
         UserExt userext = new UserExt();
-        userext.setUsername("itcast");
+        userext.setUsername("yangzf");
+        userext.setName("yangzf");
         userext.setPassword(new BCryptPasswordEncoder().encode("123"));
-        userext.setPermissions(new ArrayList<Menu>());
+        userext.setPermissions(new ArrayList<MenuDTO>());
         if(userext == null){
             return null;
         }
@@ -61,7 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //       String password ="123";
         //用户权限，这里暂时使用静态数据，最终会从数据库读取
         //从数据库获取权限
-        List<Menu> permissions = userext.getPermissions();
+        List<MenuDTO> permissions = userext.getPermissions();
         List<String> user_permission = new ArrayList<>();
         permissions.forEach(item-> user_permission.add(item.getCode()));
 //        user_permission.add("course_get_baseinfo");

@@ -176,8 +176,9 @@ public class MyStringUtils extends org.apache.commons.lang3.StringUtils {
 
     public static Map getParameterMap(String query, String splitStr) {
         Map rtnVal = new HashMap();
-        if (isNull(query))
+        if (isNull(query)) {
             return rtnVal;
+        }
         String[] parameters = query.split("\\s*" + splitStr + "\\s*");
         for (int i = 0; i < parameters.length; i++) {
             int j = parameters[i].indexOf('=');
@@ -228,10 +229,12 @@ public class MyStringUtils extends org.apache.commons.lang3.StringUtils {
     }
 
     public static String linkString(String leftStr, String linkStr, String rightStr) {
-        if (isNull(leftStr))
+        if (isNull(leftStr)) {
             return rightStr;
-        if (isNull(rightStr))
+        }
+        if (isNull(rightStr)) {
             return leftStr;
+        }
         return leftStr + linkStr + rightStr;
     }
 

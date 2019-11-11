@@ -28,7 +28,10 @@
             <artifactId>finance-api</artifactId>
 			<version>${project.parent.version}</version>
         </dependency>
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-oauth2</artifactId>
+		</dependency>
 		<!-- 单元测试 -->
 		<dependency>
 		    <groupId>junit</groupId>

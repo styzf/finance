@@ -1,6 +1,6 @@
-package com.styzf.sso.web.controller;
+package com.styzf.sso.web.controller.auth;
 
-import com.styzf.core.common.exception.BaseException;
+import com.styzf.core.common.exception.UserException;
 import com.styzf.core.common.response.LoginResponse;
 import com.styzf.core.common.response.Response;
 import com.styzf.core.common.response.SuccessResponseData;
@@ -20,6 +20,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 /**
  * @author Administrator
@@ -44,12 +45,11 @@ public class AuthController implements AuthControllerDoc {
     @Override
     @PostMapping("/userlogin")
     public Response login(LoginRequest loginRequest) {
-        if(loginRequest == null || StringUtils.isEmpty(loginRequest.getUsername())){
-            // TODO 这里要定义用户模块自己的exception
-            throw new BaseException("");
+        if(Objects.isNull(loginRequest) || StringUtils.isEmpty(loginRequest.getUsername())){
+            throw new UserException("");
         }
-        if(loginRequest == null || StringUtils.isEmpty(loginRequest.getPassword())){
-            throw new BaseException("");
+        if(Objects.isNull(loginRequest) || StringUtils.isEmpty(loginRequest.getPassword())){
+            throw new UserException("");
         }
         //账号
         String username = loginRequest.getUsername();

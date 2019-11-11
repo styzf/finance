@@ -1,5 +1,6 @@
 package com.styzf.sso;
 
+import com.styzf.core.common.util.MyStringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.boot.SpringApplication;
@@ -38,10 +39,8 @@ import java.util.Arrays;
 public class SSOApplicationMain {
 
     public static void main(String[] args) throws Exception {
-//        SpringApplication.run(SSOApplicationMain.class, args);
-//        log.info(MyStringUtils.center(" styzf-sso start success! ", 80, "*"));
-        String[] split = StringSplitUtils.split("testmywill", "m");
-        System.out.println(Arrays.toString(split));
+        SpringApplication.run(SSOApplicationMain.class, args);
+        log.info(MyStringUtils.center(" styzf-sso start success! ", 80, "*"));
     }
     @Bean
     public RestTemplate restTemplate() {
