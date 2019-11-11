@@ -1,6 +1,6 @@
 package com.styzf.sso.mapper;
 
-import com.styzf.finance.dto.user.MenuDTO;
+import com.styzf.sso.dto.user.MenuDTO;
 import com.styzf.sso.po.Menu;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;

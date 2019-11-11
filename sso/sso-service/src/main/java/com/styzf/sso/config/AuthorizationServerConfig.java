@@ -44,6 +44,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private CustomUserAuthenticationConverter customUserAuthenticationConverter;
     
+    //读取密钥的配置
     @Bean("keyProp")
     public KeyProperties keyProperties(){
         return new KeyProperties();
@@ -51,6 +52,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     
     @Resource(name = "keyProp")
     private KeyProperties keyProperties;
+    
     
     //客户端配置
     @Bean
@@ -60,17 +62,17 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.jdbc(this.dataSource).clients(this.clientDetails());
-//        clients.inMemory()
-//                .withClient("XcWebApp")//客户端id
-//                .secret("XcWebApp")//密码，要保密
-//                .accessTokenValiditySeconds(60)//访问令牌有效期
-//                .refreshTokenValiditySeconds(60)//刷新令牌有效期
-//                //授权客户端请求认证服务的类型authorization_code：根据授权码生成令牌，
-//                // client_credentials:客户端认证，refresh_token：刷新令牌，password：密码方式认证
-//                .authorizedGrantTypes("authorization_code", "client_credentials", "refresh_token", "password")
-//                .scopes("app");//客户端范围，名称自定义，必填
+       /* clients.inMemory()
+                .withClient("XcWebApp")//客户端id
+                .secret("XcWebApp")//密码，要保密
+                .accessTokenValiditySeconds(60)//访问令牌有效期
+                .refreshTokenValiditySeconds(60)//刷新令牌有效期
+                //授权客户端请求认证服务的类型authorization_code：根据授权码生成令牌，
+                // client_credentials:客户端认证，refresh_token：刷新令牌，password：密码方式认证
+                .authorizedGrantTypes("authorization_code", "client_credentials", "refresh_token", "password")
+                .scopes("app");//客户端范围，名称自定义，必填*/
     }
-
+    
     //token的存储方法
 //    @Bean
 //    public InMemoryTokenStore tokenStore() {
@@ -124,7 +126,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
                 .tokenStore(tokenStore)//令牌存储
                 .userDetailsService(userDetailsService);//用户信息service
     }
-
+    
     //授权服务器的安全配置
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
@@ -134,8 +136,8 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
     }
-
-
-
+    
+    
+    
 }
 

@@ -1,8 +1,7 @@
 package com.styzf.sso.web.doc;
 
-import com.styzf.core.common.response.LoginResponse;
 import com.styzf.core.common.response.Response;
-import com.styzf.finance.dto.request.LoginRequest;
+import com.styzf.sso.dto.request.LoginRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

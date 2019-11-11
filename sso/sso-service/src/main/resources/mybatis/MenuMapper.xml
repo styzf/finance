@@ -3,22 +3,21 @@
 <mapper namespace="com.styzf.sso.mapper.MenuMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.styzf.finance.dto.user.MenuDTO" autoMapping="true">
+    <resultMap id="BaseResultMap" type="com.styzf.sso.dto.user.MenuDTO" autoMapping="true">
     </resultMap>
 
     <select id="selectPermissionByUserId" parameterType="java.lang.String"
             resultMap="BaseResultMap">
-
         SELECT
             id,
-            CODE,
+            code,
             p_id pId,
             menu_name menuName,
             url,
             is_menu isMenu,
-            LEVEL,
+            level,
             sort,
-            STATUS,
+            status,
             icon,
             create_time createTime,
             update_time updateTiem
@@ -34,6 +33,6 @@
                           role_id
                       FROM
                           xc_user_role
-                      WHERE user_id = #{id}))
+                      WHERE user_id = #{userId}))
     </select>
 </mapper>

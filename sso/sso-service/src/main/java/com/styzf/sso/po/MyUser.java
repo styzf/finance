@@ -1,12 +1,17 @@
-package com.styzf.finance.dto.user;
+package com.styzf.sso.po;
 
+import com.styzf.mybatis.util.IdWorkerGenId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import tk.mybatis.mapper.annotation.KeySql;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -15,11 +20,14 @@ import java.util.Date;
  */
 @Data
 @ToString
+@Table(name="xc_user")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="用户对象", description="用户表")
-public class UserDTO {
+public class MyUser {
     
+    @Id
+    @KeySql(genId = IdWorkerGenId.class)
     private String id;
     
     @ApiModelProperty(value = "用户名")
@@ -55,9 +63,11 @@ public class UserDTO {
     @ApiModelProperty(value = "状态")
     private String status;
     
+    @Column(name="create_time")
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
     
+    @Column(name="update_time")
     @ApiModelProperty(value = "修改时间")
     private Date updateTime;
 

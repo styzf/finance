@@ -1,7 +1,7 @@
 package com.styzf.sso.service;
 
-import com.styzf.finance.dto.user.UserDTO;
-import com.styzf.finance.dto.user.UserExt;
+import com.styzf.sso.dto.user.UserDTO;
+import com.styzf.sso.dto.user.UserExt;
 
 /**
  * 用户服务接口说明

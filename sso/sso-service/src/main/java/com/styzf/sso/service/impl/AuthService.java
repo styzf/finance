@@ -3,7 +3,7 @@ package com.styzf.sso.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.styzf.core.common.exception.BaseException;
 import com.styzf.core.redis.RedisUtil;
-import com.styzf.finance.dto.AuthToken;
+import com.styzf.sso.dto.AuthToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;

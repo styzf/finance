@@ -1,13 +1,13 @@
 package com.styzf.sso.service.impl;
 
 import com.styzf.core.common.util.ConvertUtil;
-import com.styzf.finance.dto.user.MenuDTO;
-import com.styzf.finance.dto.user.UserDTO;
-import com.styzf.finance.dto.user.UserExt;
+import com.styzf.sso.dto.user.MenuDTO;
+import com.styzf.sso.dto.user.UserDTO;
+import com.styzf.sso.dto.user.UserExt;
 import com.styzf.sso.mapper.CompanyUserMapper;
 import com.styzf.sso.mapper.MenuMapper;
 import com.styzf.sso.mapper.UserMapper;
-import com.styzf.sso.po.User;
+import com.styzf.sso.po.MyUser;
 import com.styzf.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,22 +34,24 @@ public class UserServiceImpl implements UserService {
     private MenuMapper menuMapper;
 
     //根据账号查询xcUser信息
+    @Override
     public UserDTO findXcUserByUsername(String username){
         if (StringUtils.isEmpty(username)) {
             return null;
         }
-        Weekend<User> weekend = Weekend.of(User.class);
-        weekend.weekendCriteria().andEqualTo(User::getName, username);
+        Weekend<MyUser> weekend = Weekend.of(MyUser.class);
+        weekend.weekendCriteria().andEqualTo(MyUser::getUsername, username);
     
-        List<User> userList = userMapper.selectByExample(weekend);
+        List<MyUser> userList = userMapper.selectByExample(weekend);
         if (CollectionUtils.isEmpty(userList)) {
             return null;
         }
-        User user = userList.get(0);
+        MyUser user = userList.get(0);
         return ConvertUtil.convert(user, UserDTO.class);
     }
 
     //根据账号查询用户信息
+    @Override
     public UserExt getUserExt(String username){
         //根据账号查询xcUser信息
         UserDTO user = this.findXcUserByUsername(username);

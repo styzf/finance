@@ -1,6 +1,6 @@
 package com.styzf.sso.mapper;
 
-import com.styzf.sso.po.User;
+import com.styzf.sso.po.MyUser;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -13,6 +13,6 @@ import tk.mybatis.mapper.common.Mapper;
  * @since 2019-04-05
  */
 @Repository
-public interface UserMapper extends Mapper<User> {
+public interface UserMapper extends Mapper<MyUser> {
 
 }
