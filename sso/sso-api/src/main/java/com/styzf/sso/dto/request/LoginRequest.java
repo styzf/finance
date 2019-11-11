@@ -11,8 +11,9 @@ import lombok.ToString;
 @ToString
 public class LoginRequest {
 
-    String username;
+    String userName;
     String password;
     String verifycode;
-
+    // 暂时无意义
+    String type;
 }
