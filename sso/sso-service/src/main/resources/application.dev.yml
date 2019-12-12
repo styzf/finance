@@ -15,7 +15,7 @@ server:
     port: 60093
     session:
         timeout: 30
-    context-path: /styzf-finance
+    context-path: /styzf-sso
     tomcat:
         uri-encoding: UTF-8
 
@@ -25,7 +25,7 @@ spring:
 #      prefix: /WEB-INF/jsp/
 #      suffix: .jsp
   dubbo:
-    appname: styzf-finance-service
+    appname: styzf-sso-service
     registry: zookeeper://192.168.13.133:2181
     protocol: dubbo
     port: 60062
@@ -38,14 +38,14 @@ spring:
 
 #mybatis
 mybatis:
-  type-aliases-package: classpath*:com.styzf.finance.po
+  type-aliases-package: classpath*:com.styzf.sso.po
   mapper-locations: classpath*:mybatis/*Mapper.xml
   configurationProperties:
   configuration:
      map-underscore-to-camel-case: true
 
 mapper:
-  mappers: tk.mybatis.mapper.common.Mapper
+  mappers: tk.mybatis.mybatis.common.Mapper
   not-empty: false
   identity: MYSQL
 

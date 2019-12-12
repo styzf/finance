@@ -11,6 +11,6 @@ public class StringToLongConverter implements Converter<String, Long> {
     
     @Override
     public Long convert(String source) {
-        return new Long(source);
+        return Long.valueOf(source);
     }
 }
