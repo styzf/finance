@@ -88,12 +88,5 @@
 	           <directory>src/main/resources</directory>
 	       </resource>
 	   </resources>
-		<plugins>
-			<!--SpringBoot的Maven插件(集成运行与打包)-->
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
 	</build>
 </project>
