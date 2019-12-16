@@ -3,12 +3,12 @@ package com.styzf.sso.web.controller.auth;
 import com.styzf.core.common.exception.UserException;
 import com.styzf.core.common.response.LoginResponse;
 import com.styzf.core.common.response.Response;
-import com.styzf.core.common.response.SuccessResponseData;
 import com.styzf.core.web.util.CookieUtil;
 import com.styzf.sso.dto.AuthToken;
 import com.styzf.sso.dto.request.LoginRequest;
 import com.styzf.sso.service.impl.AuthService;
 import com.styzf.sso.web.doc.AuthControllerDoc;
+import com.styzf.sso.dto.response.JwtResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -24,7 +26,7 @@ import java.util.Objects;
  * @version 1.0
  **/
 @RestController
-@RequestMapping("/")
+@RequestMapping
 public class AuthController implements AuthControllerDoc {
 
     @Value("${auth.clientId}")
@@ -78,8 +80,33 @@ public class AuthController implements AuthControllerDoc {
         return null;
     }
     
-    @GetMapping("hello")
-    public Response hello() {
-        return SuccessResponseData.newInstance("hello");
+    @Override
+    @GetMapping("/userjwt")
+    public JwtResult userjwt(HttpServletRequest request) {
+        //取出cookie中的用户身份令牌
+        String uid = getTokenFormCookie(request);
+        if(uid == null){
+            return new JwtResult(Boolean.FALSE,null);
+        }
+        
+        //拿身份令牌从redis中查询jwt令牌
+        AuthToken userToken = authService.getUserToken(uid);
+        if(userToken!=null){
+            //将jwt令牌返回给用户
+            String jwt_token = userToken.getJwt_token();
+            return new JwtResult(Boolean.TRUE,jwt_token);
+        }
+        return null;
     }
+	
+	//取出cookie中的身份令牌
+	private String getTokenFormCookie(HttpServletRequest request){
+		Map<String, String> map = CookieUtil.readCookie(request, "uid");
+		
+		if (Objects.isNull(map)) {
+			return null;
+		}
+		
+		return map.get("uid");
+	}
 }

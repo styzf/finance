@@ -2,8 +2,11 @@ package com.styzf.sso.web.doc;
 
 import com.styzf.core.common.response.Response;
 import com.styzf.sso.dto.request.LoginRequest;
+import com.styzf.sso.dto.response.JwtResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator.
@@ -15,4 +18,7 @@ public interface AuthControllerDoc {
 
     @ApiOperation("退出")
     public Response logout();
+    
+    @ApiOperation("查询用户jwt令牌")
+    public JwtResult userjwt(HttpServletRequest request);
 }

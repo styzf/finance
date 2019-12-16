@@ -49,8 +49,10 @@ public class AuthService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-    public static final String XC_SERVICE_UCENTER_AUTH = "sso-auth";
+    public static final String SSO_AUTH = "sso-auth";
 
+    public static final String PREFIX_TOKEN = "user:auth:user_token:";
+    
     //用户认证申请令牌，将令牌存储到redis
     public AuthToken login(String username, String password, String clientId, String clientSecret) {
 
@@ -58,7 +60,7 @@ public class AuthService {
         AuthToken authToken = this.applyToken(username, password, clientId, clientSecret);
         if(authToken == null){
             // 改为user自带的exception
-            throw new BaseException("");
+            throw new BaseException("认证失败");
         }
         //用户身份令牌
         String access_token = authToken.getAccess_token();
@@ -82,7 +84,7 @@ public class AuthService {
      * @return
      */
     private boolean saveToken(String access_token,String content,long ttl){
-        String key = "user_token:" + access_token;
+        String key = PREFIX_TOKEN + access_token;
         redisUtil.set(key, content, ttl, TimeUnit.SECONDS);
 
         Long expire = redisUtil.getExpire(key);
@@ -92,7 +94,7 @@ public class AuthService {
     private AuthToken applyToken(String username, String password, String clientId, String clientSecret){
         //从eureka中获取认证服务的地址（因为spring security在认证服务中）
         //从eureka中获取认证服务的一个实例的地址
-        ServiceInstance serviceInstance = loadBalancerClient.choose(XC_SERVICE_UCENTER_AUTH);
+        ServiceInstance serviceInstance = loadBalancerClient.choose(SSO_AUTH);
         //此地址就是http://ip:port
         URI uri = serviceInstance.getUri();
         //令牌申请的地址 http://localhost:40400/auth/oauth/token
@@ -141,8 +143,12 @@ public class AuthService {
         authToken.setJwt_token((String) data.get("access_token"));//jwt令牌
         return authToken;
     }
-
-
+    
+    //从redis查询令牌
+    public AuthToken getUserToken(String token){
+        String key = PREFIX_TOKEN + token;
+        return redisUtil.getObject(key, AuthToken.class);
+    }
 
     //获取httpbasic的串
     private String getHttpBasic(String clientId,String clientSecret){
