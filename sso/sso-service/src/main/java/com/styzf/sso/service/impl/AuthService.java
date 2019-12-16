@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.styzf.core.common.exception.BaseException;
 import com.styzf.core.redis.RedisUtil;
 import com.styzf.sso.dto.AuthToken;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit;
  * @author Administrator
  * @version 1.0
  **/
+@Log
 @Service
 public class AuthService {
 	
@@ -122,11 +124,12 @@ public class AuthService {
                 }
             }
         });
-
+    
+        log.info(authUrl + JSON.toJSONString(httpEntity));
         ResponseEntity<Map> exchange = restTemplate.exchange(authUrl, HttpMethod.POST, httpEntity, Map.class);
-
-        //申请令牌信息
+        log.info(JSON.toJSONString(exchange));
         
+        //申请令牌信息
         Map exchangeBody = exchange.getBody();
         Map data = new HashMap<String, Object>();
         if (Boolean.TRUE.equals(exchangeBody.get("success"))) {
