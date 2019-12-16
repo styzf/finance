@@ -125,6 +125,7 @@ public class AuthService {
             }
         });
     
+        
         log.info(authUrl + JSON.toJSONString(httpEntity));
         ResponseEntity<Map> exchange = restTemplate.exchange(authUrl, HttpMethod.POST, httpEntity, Map.class);
         log.info(JSON.toJSONString(exchange));
