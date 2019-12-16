@@ -25,7 +25,7 @@ styzf:
     pathsRegex: ^.*(?<!error)$
 
 server:
-  port: 8080
+  port: 8082
   session:
     timeout: 30
   context-path: /styzf-sso
@@ -93,7 +93,7 @@ eureka:
     prefer-ip-address:  true  #将自己的ip地址注册到Eureka服务中
     ip-address: ${IP_ADDRESS:192.168.13.133}
     instance-id: ${spring.application.name}:${server.port} #指定实例id
-    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+    status-page-url: http://${eureka.instance.ip-address}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
 ribbon:
   MaxAutoRetries: 2 #最大重试次数，当Eureka中可以找到服务，但是服务连不上时将会重试
   MaxAutoRetriesNextServer: 3 #切换实例的重试次数
