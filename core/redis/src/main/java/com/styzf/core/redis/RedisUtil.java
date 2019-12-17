@@ -1,5 +1,6 @@
 package com.styzf.core.redis;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -68,6 +69,21 @@ public class RedisUtil {
                 return null;
             }
             return JSON.parseObject(value, clazz);
+        } catch (Exception e) {
+            logger.error("json解析错误：" + value);
+            return null;
+        }
+    }
+    
+    public <T> List<T> getList(String key, Class<T> clazz) {
+        String value = null;
+        try {
+            BoundValueOperations<String,String> boundValueOps = stringRedisTemplate.boundValueOps(key);
+            value = boundValueOps.get();
+            if (StringUtils.isBlank(value)) {
+                return null;
+            }
+            return JSON.parseArray(value, clazz);
         } catch (Exception e) {
             logger.error("json解析错误：" + value);
             return null;
