@@ -33,7 +33,7 @@ public class UserUtils implements Serializable {
 	}
 	
 	public List<String> getAuthList(String userName) {
-		return redisUtil.getObject(UserRedisKey.User.AUTH + userName, List.class);
+		return redisUtil.getList(UserRedisKey.User.AUTH + userName, String.class);
 	}
 	
 }
