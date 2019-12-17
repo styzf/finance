@@ -48,16 +48,3 @@ mapper:
   mappers: tk.mybatis.mybatis.common.Mapper
   not-empty: false
   identity: MYSQL
-
-auth:
-  tokenValiditySeconds: 1200  #token存储到redis的过期时间
-  clientId: XcWebApp
-  clientSecret: XcWebApp
-  cookieDomain: xuecheng.com
-  cookieMaxAge: -1
-encrypt:
-  key-store:
-    location: classpath:/xc.keystore
-    secret: xuechengkeystore
-    alias: xckey
-    password: xuecheng
