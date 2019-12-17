@@ -91,12 +91,12 @@ public class AuthController implements AuthControllerDoc {
         
         //拿身份令牌从redis中查询jwt令牌
         AuthToken userToken = authService.getUserToken(uid);
-        if(userToken!=null){
-            //将jwt令牌返回给用户
-            String jwt_token = userToken.getJwt_token();
-            return new JwtResult(Boolean.TRUE,jwt_token);
-        }
-        return null;
+        
+        if (Objects.isNull(userToken)) {return null;}
+     
+        //将jwt令牌返回给用户
+        String jwt_token = userToken.getJwt_token();
+        return new JwtResult(Boolean.TRUE,jwt_token);
     }
 	
 	//取出cookie中的身份令牌
