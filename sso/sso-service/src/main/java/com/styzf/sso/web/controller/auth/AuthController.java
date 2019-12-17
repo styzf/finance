@@ -7,6 +7,7 @@ import com.styzf.core.web.util.CookieUtil;
 import com.styzf.sso.dto.AuthToken;
 import com.styzf.sso.dto.request.LoginRequest;
 import com.styzf.sso.service.impl.AuthService;
+import com.styzf.sso.util.UserUtils;
 import com.styzf.sso.web.doc.AuthControllerDoc;
 import com.styzf.sso.dto.response.JwtResult;
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -30,24 +33,27 @@ import java.util.Objects;
 public class AuthController implements AuthControllerDoc {
 
     @Value("${auth.clientId}")
-    String clientId;
+    private String clientId;
     @Value("${auth.clientSecret}")
-    String clientSecret;
+    private String clientSecret;
     @Value("${auth.cookieDomain}")
-    String cookieDomain;
+    private String cookieDomain;
     @Value("${auth.cookieMaxAge}")
-    int cookieMaxAge;
+    private int cookieMaxAge;
 
     @Autowired
-    AuthService authService;
-
+    private AuthService authService;
+    
+    @Autowired
+    private UserUtils userUtils;
+    
     @Override
     @PostMapping("/userlogin")
-    public Response login(@RequestBody LoginRequest loginRequest) {
-        if(Objects.isNull(loginRequest) || StringUtils.isEmpty(loginRequest.getUserName())){
+    public Response login(@RequestBody @Valid LoginRequest loginRequest) {
+        if (StringUtils.isEmpty(loginRequest.getUserName())){
             throw new UserException("请输入用户名");
         }
-        if(Objects.isNull(loginRequest) || StringUtils.isEmpty(loginRequest.getPassword())){
+        if (StringUtils.isEmpty(loginRequest.getPassword())){
             throw new UserException("请输入密码");
         }
         //账号
@@ -57,13 +63,14 @@ public class AuthController implements AuthControllerDoc {
 
         //申请令牌
         AuthToken authToken =  authService.login(username,password,clientId,clientSecret);
-
+    
         //用户身份令牌
-        String access_token = authToken.getAccess_token();
+        String accessToken = authToken.getAccess_token();
         //将令牌存储到cookie
-        this.saveCookie(access_token);
-
-        return new LoginResponse(Boolean.TRUE,access_token);
+        this.saveCookie(accessToken);
+    
+        List<String> authList = userUtils.getAuthList(username);
+        return new LoginResponse(authList);
     }
 
     //将令牌存储到cookie

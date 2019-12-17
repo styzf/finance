@@ -1,8 +1,12 @@
 package com.styzf.sso.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.styzf.core.redis.RedisUtil;
+import com.styzf.sso.constant.UserRedisKey;
 import com.styzf.sso.dto.user.MenuDTO;
 import com.styzf.sso.dto.user.UserExt;
 import com.styzf.sso.service.UserService;
+import com.styzf.sso.util.UserUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -28,7 +32,7 @@ import java.util.List;
  * @date 2019-09-23
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -36,6 +40,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private UserUtils userUtils;
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -70,6 +77,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         List<String> user_permission = new ArrayList<>();
         permissions.forEach(item-> user_permission.add(item.getCode()));
+        
         //使用静态的权限表示用户所拥有的权限
         String user_permission_string  = StringUtils.join(user_permission.toArray(), ",");
         UserJwt userDetails = new UserJwt(username,
@@ -80,6 +88,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDetails.setCompanyId(userext.getCompanyId());//所属企业
         userDetails.setName(userext.getName());//用户名称
         userDetails.setUserpic(userext.getUserpic());//用户头像
+    
+        userUtils.setUserAuth(username, user_permission);
         return userDetails;
     }
+    
 }
