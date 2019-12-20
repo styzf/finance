@@ -70,7 +70,7 @@ public class RedisUtil {
             }
             return JSON.parseObject(value, clazz);
         } catch (Exception e) {
-            logger.error("json解析错误：" + value);
+            logger.error("json解析错误：" + value + " ----key:" + key);
             return null;
         }
     }
