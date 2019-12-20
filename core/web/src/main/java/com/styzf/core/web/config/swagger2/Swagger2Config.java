@@ -27,11 +27,16 @@ public class Swagger2Config {
     public Docket springfoxDocket(ApiInfoProperties apiInfo) {
 	
 	    ParameterBuilder authPar = new ParameterBuilder();
+	    ParameterBuilder cookiePar = new ParameterBuilder();
 	    List<Parameter> pars = new ArrayList<Parameter>();
 	    authPar.name("Authorization").description("jwt令牌")
 			    .modelRef(new ModelRef("string")).parameterType("header")
 			    .required(false).build(); //header中的ticket参数非必填，传空也可以
+	    cookiePar.name("Cookie").description("Cookie")
+			    .modelRef(new ModelRef("string")).parameterType("header")
+			    .required(false).build(); //header中的ticket参数非必填，传空也可以
 	    pars.add(authPar.build());    //根据每个方法名也知道当前方法在设置什么参数
+	    pars.add(cookiePar.build());    //根据每个方法名也知道当前方法在设置什么参数
 	    
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .ignoredParameterTypes(new Class[] { ApiIgnore.class })
