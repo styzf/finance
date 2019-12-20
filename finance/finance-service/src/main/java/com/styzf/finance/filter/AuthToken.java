@@ -4,13 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * Created by mrt on 2018/5/21.
  */
 @Data
 @ToString
 @NoArgsConstructor
-public class AuthToken {
+public class AuthToken implements Serializable {
     /**
      * 访问token就是短令牌，用户身份令牌
      */
