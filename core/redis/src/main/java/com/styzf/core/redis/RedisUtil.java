@@ -16,6 +16,11 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
 
+/**
+ * redis工具类
+ * @author styzf
+ * @date 2019-12-20
+ */
 @Component
 public class RedisUtil {
 
