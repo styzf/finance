@@ -1,7 +1,6 @@
 package com.styzf.finance.filter;
 
 import com.styzf.core.redis.RedisUtil;
-import com.styzf.sso.dto.AuthToken;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
