@@ -44,6 +44,8 @@ public class CategoryController implements CategoryControllerDoc {
 		Pager<CategoryDTO> pager = categoryService.basePage(dto);
 		return SuccessResponseData.newInstance(pager);
 	}
+	
+	@PreAuthorize("hasAuthority('category_tree')")
 	@Override
 	@GetMapping("/tree")
 	public Response getCategoryTree(Long parentId) {
