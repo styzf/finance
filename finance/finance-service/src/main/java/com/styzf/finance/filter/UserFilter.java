@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Objects;
 
 @Component
 @Order
@@ -38,8 +39,10 @@ public class UserFilter implements Filter {
 		}
 		if (StringUtils.isNotBlank(token)) {
 			AuthToken authToken = redisUtil.getObject("user:auth:user_token:" + token, AuthToken.class);
-			String jwt = authToken.getJwt_token();
-			req.putHeader("Authorization", "Bearer " + jwt);
+			if (Objects.nonNull(authToken)) {
+				String jwt = authToken.getJwt_token();
+				req.putHeader("Authorization", "Bearer " + jwt);
+			}
 		}
 		
 		chain.doFilter(req, response);
