@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0
  **/
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
     @GetMapping("notices")
@@ -30,4 +30,6 @@ public class UserController {
     public Response users() {
         return SuccessResponseData.newInstance("users");
     }
+    
+    
 }
