@@ -1,6 +1,7 @@
 package com.styzf.finance.filter;
 
 import com.styzf.core.redis.RedisUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Objects;
 
+@Slf4j
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE)
 @WebFilter(urlPatterns = "/*", filterName = "httpFilter")
@@ -29,6 +31,7 @@ public class UserFilter implements Filter {
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		log.error(request.getClass().getName());
 		UserHttpServletRequestWrapper req = new UserHttpServletRequestWrapper((HttpServletRequest) request);
 		Cookie[] cookies = req.getCookies();
 		String token = "";
