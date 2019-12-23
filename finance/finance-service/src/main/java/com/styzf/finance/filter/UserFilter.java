@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.LOWEST_PRECEDENCE)
 @WebFilter(urlPatterns = "/*", filterName = "httpFilter")
 public class UserFilter implements Filter {
 	
