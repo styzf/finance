@@ -1,5 +1,7 @@
 package com.styzf.finance.filter;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.*;
@@ -43,6 +45,21 @@ public class UserHttpServletRequestWrapper extends HttpServletRequestWrapper {
 		while (enumeration.hasMoreElements()) {
 			String name = enumeration.nextElement();
 			set.add(name);
+		}
+		return Collections.enumeration(set);
+	}
+	
+	@Override
+	public Enumeration<String> getHeaders(String name) {
+		String s = headers.get(name);
+		Set<String> set = new HashSet<>();
+		if (StringUtils.isNotBlank(s)) {
+			set.add(s);
+		}
+		Enumeration<String> enumeration = ((HttpServletRequest) getRequest()).getHeaderNames();
+		while (enumeration.hasMoreElements()) {
+			String value = enumeration.nextElement();
+			set.add(value);
 		}
 		return Collections.enumeration(set);
 	}

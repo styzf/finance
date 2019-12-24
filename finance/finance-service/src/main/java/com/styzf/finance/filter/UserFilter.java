@@ -20,25 +20,27 @@ import java.util.Objects;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @WebFilter(urlPatterns = "/*", filterName = "httpFilter")
 public class UserFilter implements Filter {
-	
+
 	@Autowired
 	private RedisUtil redisUtil;
-	
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-	
+
 	}
-	
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		log.error(request.getClass().getName());
 		UserHttpServletRequestWrapper req = new UserHttpServletRequestWrapper((HttpServletRequest) request);
 		Cookie[] cookies = req.getCookies();
 		String token = "";
-		for (Cookie cookie : cookies) {
-			if ("uid".equals(cookie.getName())) {
-				token = cookie.getValue();
-				break;
+		if (Objects.nonNull(cookies)) {
+			for (Cookie cookie : cookies) {
+				if ("uid".equals(cookie.getName())) {
+					token = cookie.getValue();
+					break;
+				}
 			}
 		}
 		if (StringUtils.isNotBlank(token)) {
@@ -48,12 +50,12 @@ public class UserFilter implements Filter {
 				req.putHeader("Authorization", "Bearer " + jwt);
 			}
 		}
-		
+
 		chain.doFilter(req, response);
 	}
-	
+
 	@Override
 	public void destroy() {
-	
+
 	}
 }
