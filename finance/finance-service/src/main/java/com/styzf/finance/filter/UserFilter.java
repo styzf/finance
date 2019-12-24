@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @Slf4j
 @Component
-@Order(Ordered.LOWEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @WebFilter(urlPatterns = "/*", filterName = "httpFilter")
 public class UserFilter implements Filter {
 	

@@ -6,7 +6,7 @@ import java.util.*;
 
 /**
  * 自定义request以实现修改请求头的功能
- * @author styzf
+ * @author styzfSecurityContextHolder
  * @date 2019-12-20
  */
 public class UserHttpServletRequestWrapper extends HttpServletRequestWrapper {
