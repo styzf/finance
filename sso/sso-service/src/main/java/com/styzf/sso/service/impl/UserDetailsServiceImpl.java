@@ -75,11 +75,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(permissions == null){
             permissions = new ArrayList<>();
         }
-        List<String> user_permission = new ArrayList<>();
-        permissions.forEach(item-> user_permission.add(item.getCode()));
+        List<String> userPermission = new ArrayList<>();
+        permissions.forEach(item-> userPermission.add(item.getCode()));
         
         //使用静态的权限表示用户所拥有的权限
-        String user_permission_string  = StringUtils.join(user_permission.toArray(), ",");
+        String user_permission_string  = StringUtils.join(userPermission.toArray(), ",");
         UserJwt userDetails = new UserJwt(username,
                 password,
                 AuthorityUtils.commaSeparatedStringToAuthorityList(user_permission_string));
@@ -89,7 +89,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDetails.setName(userext.getName());//用户名称
         userDetails.setUserpic(userext.getUserpic());//用户头像
     
-        userUtils.setUserAuth(username, user_permission);
+        userUtils.setUserAuth(username, userPermission);
         return userDetails;
     }
     
