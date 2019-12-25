@@ -17,17 +17,13 @@ import java.util.Map;
  * @author styzf
  * @date 2019-12-25
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 @Component
-@ConfigurationProperties(prefix="styzf.auth")
+@ConfigurationProperties("styzf.auth")
 public class AuthSettings implements Serializable {
     
     private List<AuthUrl> authUrl;
     
-    public List<AuthUrl> getAuthUrl() {
-        return authUrl;
-    }
-    
-    public void setAuthUrl(List<AuthUrl> authUrl) {
-        this.authUrl = authUrl;
-    }
 }
