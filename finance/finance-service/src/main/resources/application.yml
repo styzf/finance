@@ -13,8 +13,8 @@ styzf:
         - /webjars/**
   auth:
     authUrl:
-      - /category/tree
-      - /test
+      - url: /category/tree
+        type: get
   apiInfo:
     title: STYZF-TEST REST API
     description: STYZF财务管理 API

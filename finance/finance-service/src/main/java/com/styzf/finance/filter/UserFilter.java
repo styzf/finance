@@ -58,9 +58,9 @@ public class UserFilter implements Filter {
 	
 	private boolean checkAuth(UserHttpServletRequestWrapper req) {
 		String uri = req.getRequestURI();
-		List<String> authUrlList = authSettings.getAuthUrl();
-		for (String url: authUrlList) {
-			if (uri.matches(url)) {
+		List<AuthUrl> authUrlList = authSettings.getAuthUrl();
+		for (AuthUrl url: authUrlList) {
+			if (uri.matches(url.getUrl()) && req.getMethod().equalsIgnoreCase(url.getType())) {
 				return true;
 			}
 		}
