@@ -11,6 +11,10 @@ styzf:
         - /swagger-resources/configuration/security
         - /swagger-ui.html
         - /webjars/**
+  auth:
+    authUrl:
+      - /category/tree
+      - /test
   apiInfo:
     title: STYZF-TEST REST API
     description: STYZF财务管理 API
