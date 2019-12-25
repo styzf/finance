@@ -11,6 +11,7 @@ import java.util.Map;
 
 /**
  * @author styzf
+ * @date 2019-12-25
  */
 @Data
 @Component("authSettings")
