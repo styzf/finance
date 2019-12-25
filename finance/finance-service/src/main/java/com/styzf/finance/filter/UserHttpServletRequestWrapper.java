@@ -56,7 +56,7 @@ public class UserHttpServletRequestWrapper extends HttpServletRequestWrapper {
 		if (StringUtils.isNotBlank(s)) {
 			set.add(s);
 		}
-		Enumeration<String> enumeration = ((HttpServletRequest) getRequest()).getHeaderNames();
+		Enumeration<String> enumeration = ((HttpServletRequest) getRequest()).getHeaders(name);
 		while (enumeration.hasMoreElements()) {
 			String value = enumeration.nextElement();
 			set.add(value);
