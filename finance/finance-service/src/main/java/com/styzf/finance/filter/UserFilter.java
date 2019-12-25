@@ -1,5 +1,6 @@
 package com.styzf.finance.filter;
 
+import com.styzf.core.common.util.CookieUtil;
 import com.styzf.core.redis.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -35,16 +36,8 @@ public class UserFilter implements Filter {
 		try {
 			chain.doFilter(req, response);
 		} catch (Exception e) {
-			Cookie[] cookies = req.getCookies();
-			String token = "";
-			if (Objects.nonNull(cookies)) {
-				for (Cookie cookie : cookies) {
-					if ("uid".equals(cookie.getName())) {
-						token = cookie.getValue();
-						break;
-					}
-				}
-			}
+			String token = CookieUtil.readCookie(req, "uid");
+			
 			if (StringUtils.isNotBlank(token)) {
 				AuthToken authToken = redisUtil.getObject("user:auth:user_token:" + token, AuthToken.class);
 				if (Objects.nonNull(authToken)) {
