@@ -12,7 +12,6 @@
   
   <modules>
   	<module>sso-service</module>
-  	<module>sso-api</module>
   </modules>
 
 </project>

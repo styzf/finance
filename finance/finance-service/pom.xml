@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.styzf</groupId>
-			<artifactId>sso-api</artifactId>
+			<artifactId>sso-client</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>

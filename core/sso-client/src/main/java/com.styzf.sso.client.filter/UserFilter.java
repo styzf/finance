@@ -1,4 +1,4 @@
-package com.styzf.sso.filter;
+package com.styzf.sso.client.filter;
 
 import com.styzf.core.common.util.CookieUtil;
 import com.styzf.core.redis.RedisUtil;

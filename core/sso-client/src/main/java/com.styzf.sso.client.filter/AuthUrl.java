@@ -1,4 +1,4 @@
-package com.styzf.sso.filter;
+package com.styzf.sso.client.filter;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package com.styzf.sso.filter;
+package com.styzf.sso.client.filter;
 
 import org.apache.commons.lang3.StringUtils;
 

@@ -18,6 +18,8 @@
     	<module>web</module>
   	    <module>redis</module>
         <module>log</module>
+        <module>sso-client</module>
+        <module>sso-api</module>
     </modules>
 
     <properties>
