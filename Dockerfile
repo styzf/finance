@@ -7,5 +7,5 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 
 ADD ${JAR_PATH}/*.jar /home/ROOT.jar
 
-CMD ["java -Duser.timezone=UTC -Xmx512m -jar ROOT.jar", "run"]
+CMD ["java -Duser.timezone=UTC -Xmx512m -jar /home/ROOT.jar", "run"]
 
