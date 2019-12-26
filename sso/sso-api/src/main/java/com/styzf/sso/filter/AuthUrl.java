@@ -1,4 +1,4 @@
-package com.styzf.finance.filter;
+package com.styzf.sso.filter;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

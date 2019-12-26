@@ -19,6 +19,4 @@ public interface AuthControllerDoc {
     @ApiOperation("退出")
     public Response logout();
     
-    @ApiOperation("查询用户jwt令牌")
-    public JwtResult userjwt(HttpServletRequest request);
 }

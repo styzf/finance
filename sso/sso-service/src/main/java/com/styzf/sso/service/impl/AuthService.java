@@ -1,8 +1,10 @@
 package com.styzf.sso.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.styzf.core.common.constant.ServiceConstant;
 import com.styzf.core.common.exception.BaseException;
 import com.styzf.core.redis.RedisUtil;
+import com.styzf.sso.constant.UserRedisKey;
 import com.styzf.sso.dto.AuthToken;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +53,6 @@ public class AuthService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-    public static final String SSO_AUTH = "sso-auth";
-
-    public static final String PREFIX_TOKEN = "user:auth:user_token:";
-    
     //用户认证申请令牌，将令牌存储到redis
     public AuthToken login(String username, String password, String clientId, String clientSecret) {
 
@@ -86,17 +84,16 @@ public class AuthService {
      * @return
      */
     private boolean saveToken(String access_token,String content,long ttl){
-        String key = PREFIX_TOKEN + access_token;
-        redisUtil.set(key, content, ttl, TimeUnit.SECONDS);
+        redisUtil.set(UserRedisKey.User.TOKEN, content, ttl, TimeUnit.SECONDS);
 
-        Long expire = redisUtil.getExpire(key);
+        Long expire = redisUtil.getExpire(UserRedisKey.User.TOKEN);
         return expire>0;
     }
     //申请令牌
     private AuthToken applyToken(String username, String password, String clientId, String clientSecret){
         //从eureka中获取认证服务的地址（因为spring security在认证服务中）
         //从eureka中获取认证服务的一个实例的地址
-        ServiceInstance serviceInstance = loadBalancerClient.choose(SSO_AUTH);
+        ServiceInstance serviceInstance = loadBalancerClient.choose(ServiceConstant.SSO_AUTH);
         //此地址就是http://ip:port
         URI uri = serviceInstance.getUri();
         //令牌申请的地址 http://localhost:40400/auth/oauth/token
@@ -148,12 +145,6 @@ public class AuthService {
         return authToken;
     }
     
-    //从redis查询令牌
-    public AuthToken getUserToken(String token){
-        String key = PREFIX_TOKEN + token;
-        return redisUtil.getObject(key, AuthToken.class);
-    }
-
     //获取httpbasic的串
     private String getHttpBasic(String clientId,String clientSecret){
         String string = clientId+":"+clientSecret;

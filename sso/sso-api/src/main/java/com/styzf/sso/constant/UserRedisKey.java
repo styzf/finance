@@ -19,5 +19,10 @@ public interface UserRedisKey {
 		 * 用户权限
 		 */
 		String AUTH = PREFIX + "auth:";
+		
+		/**
+		 * TOKEN信息
+		 */
+		String TOKEN = PREFIX + "user_token:";
 	}
 }

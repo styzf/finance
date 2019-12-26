@@ -87,25 +87,6 @@ public class AuthController implements AuthControllerDoc {
         return null;
     }
     
-    @Override
-    @GetMapping("/userjwt")
-    public JwtResult userjwt(HttpServletRequest request) {
-        //取出cookie中的用户身份令牌
-        String uid = getTokenFormCookie(request);
-        if(uid == null){
-            return new JwtResult(Boolean.FALSE,null);
-        }
-        
-        //拿身份令牌从redis中查询jwt令牌
-        AuthToken userToken = authService.getUserToken(uid);
-        
-        if (Objects.isNull(userToken)) {return null;}
-     
-        //将jwt令牌返回给用户
-        String jwt_token = userToken.getJwt_token();
-        return new JwtResult(Boolean.TRUE,jwt_token);
-    }
-	
 	//取出cookie中的身份令牌
 	private String getTokenFormCookie(HttpServletRequest request){
 		Map<String, String> map = CookieUtil.readCookie(request, "uid");
