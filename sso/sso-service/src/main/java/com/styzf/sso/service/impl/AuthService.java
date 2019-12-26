@@ -84,9 +84,9 @@ public class AuthService {
      * @return
      */
     private boolean saveToken(String access_token,String content,long ttl){
-        redisUtil.set(UserRedisKey.User.TOKEN, content, ttl, TimeUnit.SECONDS);
+        redisUtil.set(UserRedisKey.User.TOKEN + access_token, content, ttl, TimeUnit.SECONDS);
 
-        Long expire = redisUtil.getExpire(UserRedisKey.User.TOKEN);
+        Long expire = redisUtil.getExpire(UserRedisKey.User.TOKEN + access_token);
         return expire>0;
     }
     //申请令牌
