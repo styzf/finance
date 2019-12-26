@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component("settings")
-@ConfigurationProperties(prefix="styzf.config.settings")
+@ConfigurationProperties("styzf.config.settings")
 public class StyzfSettings {
     public String defaultLocale;
     public List<String> supportLocales = new ArrayList<>();

@@ -1,13 +1,11 @@
-FROM tomcat
+FROM openjdk:8
 
 ARG JAR_PATH=./target
 
-RUN rm -rf /usr/local/tomcat/webapps/ROOT \
-    && /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
-ADD ${JAR_PATH}/*.war /usr/local/tomcat/webapps/ROOT.war
+ADD ${JAR_PATH}/*.jar /home/ROOT.jar
 
-CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+CMD ["java -Duser.timezone=UTC -Xmx512m -jar ROOT.jar", "run"]
 
-EXPOSE 8080
