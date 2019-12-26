@@ -2,6 +2,7 @@ package com.styzf.sso.client.filter;
 
 import com.styzf.core.common.util.CookieUtil;
 import com.styzf.core.redis.RedisUtil;
+import com.styzf.sso.constant.UserRedisKey;
 import com.styzf.sso.dto.AuthToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +45,7 @@ public class UserFilter implements Filter {
 			
 			if (StringUtils.isNotBlank(token)) {
 				// 后面改为请求服务
-				AuthToken authToken = redisUtil.getObject("user:auth:user_token:" + token, AuthToken.class);
+				AuthToken authToken = redisUtil.getObject(UserRedisKey.User.TOKEN + token, AuthToken.class);
 				if (Objects.nonNull(authToken)) {
 					String jwt = authToken.getJwt_token();
 					req.putHeader("Authorization", "Bearer " + jwt);
