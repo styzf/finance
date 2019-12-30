@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.styzf.core.redis.RedisUtil;
 import com.styzf.sso.constant.UserRedisKey;
 import com.styzf.sso.dto.user.MenuDTO;
+import com.styzf.sso.dto.user.RoleDTO;
 import com.styzf.sso.dto.user.UserExt;
 import com.styzf.sso.service.UserService;
 import com.styzf.sso.util.UserUtils;
@@ -23,11 +24,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * TODO 后续需要修改
- * TODO 1、用户信息的查询要查数据库，非写死
- * TODO 2、因为依赖可能不依赖UserDetailsService，不进行注册服务，考虑使用其他的接口调用，或者不对外提供
+ * 自定义UserDetailsService
  * @author styzf
  * @date 2019-09-23
  */
@@ -60,7 +60,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (StringUtils.isEmpty(username)) {
             return null;
         }
-        //远程调用用户中心根据账号查询用户信息
+        
         UserExt userext = userService.getUserExt(username);
         if(userext == null){
             //返回空给spring security表示用户不存在
@@ -72,11 +72,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //用户权限，这里暂时使用静态数据，最终会从数据库读取
         //从数据库获取权限
         List<MenuDTO> permissions = userext.getPermissions();
-        if(permissions == null){
+        List<RoleDTO> roleList = userext.getRoleList();
+        if(Objects.isNull(permissions)){
             permissions = new ArrayList<>();
+        }
+        if (Objects.isNull(roleList)) {
+            roleList = new ArrayList<>();
         }
         List<String> userPermission = new ArrayList<>();
         permissions.forEach(item-> userPermission.add(item.getCode()));
+        roleList.forEach(item-> userPermission.add(item.getRoleCode()));
         
         //使用静态的权限表示用户所拥有的权限
         String user_permission_string  = StringUtils.join(userPermission.toArray(), ",");

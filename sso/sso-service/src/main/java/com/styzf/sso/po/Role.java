@@ -1,5 +1,6 @@
 package com.styzf.sso.po;
 
+import com.styzf.mybatis.base.BasePO;
 import com.styzf.mybatis.util.IdWorkerGenId;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -25,21 +26,14 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="角色表", description="角色表")
-public class Role {
+public class Role extends BasePO {
     
-    @Id
-    @KeySql(genId = IdWorkerGenId.class)
-    private String id;
     @Column(name="role_name")
     private String roleName;
-    @Column(name="roleCode")
-    private String role_code;
+    @Column(name="role_code")
+    private String roleCode;
     private String description;
     private String status;
-    @Column(name="createTime")
-    private Date create_time;
-    @Column(name="update_time")
-    private Date updateTime;
 
 
 }

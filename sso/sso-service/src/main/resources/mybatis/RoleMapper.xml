@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.styzf.sso.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.styzf.sso.dto.user.RoleDTO" autoMapping="true">
+    </resultMap>
+
+    <select id="getByUserId" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            st_role
+            FROM
+            id IN ( SELECT role_id FROM st_user_role WHERE user_id = #{userId} )
+    </select>
+</mapper>

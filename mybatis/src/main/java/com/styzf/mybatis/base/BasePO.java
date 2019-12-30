@@ -62,7 +62,7 @@ public abstract class BasePO implements Serializable{
     /**
      * 语言类型
      */
-//    @Column(name = "lang_type")
+    @Column(name = "lang_type")
     private String langType;
     
     @Override

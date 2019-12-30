@@ -19,10 +19,19 @@ import java.util.List;
 @Accessors(chain = true)
 @ApiModel(value="用户扩展对象", description="用户扩展对象")
 public class UserExt extends UserDTO {
-
-    //权限信息
+    
+    /**
+     * 权限信息
+     */
     private List<MenuDTO> permissions;
-
-    //企业信息
+    
+    /**
+     * 角色信息
+     */
+    private List<RoleDTO> roleList;
+    
+    /**
+     * 企业id
+     */
     private String companyId;
 }

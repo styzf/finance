@@ -6,8 +6,7 @@
     <resultMap id="BaseResultMap" type="com.styzf.sso.dto.user.MenuDTO" autoMapping="true">
     </resultMap>
 
-    <select id="selectPermissionByUserId" parameterType="java.lang.String"
-            resultMap="BaseResultMap">
+    <select id="selectPermissionByUserId" resultMap="BaseResultMap">
         SELECT
             id,
             code,
@@ -29,10 +28,9 @@
                FROM
                    xc_permission
                WHERE role_id IN
-                     (SELECT
-                          role_id
-                      FROM
-                          xc_user_role
-                      WHERE user_id = #{userId}))
+               <foreach collection="roleIdList" index="index" item="roleId" open="(" separator="," close=")">
+                   #{roleId}
+               </foreach>
+              )
     </select>
 </mapper>

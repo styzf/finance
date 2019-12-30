@@ -89,14 +89,22 @@ public class AuthService {
         Long expire = redisUtil.getExpire(UserRedisKey.User.TOKEN + access_token);
         return expire>0;
     }
-    //申请令牌
+    
+    /**
+     * 申请令牌
+     * @param username
+     * @param password
+     * @param clientId
+     * @param clientSecret
+     * @return
+     */
     private AuthToken applyToken(String username, String password, String clientId, String clientSecret){
         //从eureka中获取认证服务的地址（因为spring security在认证服务中）
         //从eureka中获取认证服务的一个实例的地址
         ServiceInstance serviceInstance = loadBalancerClient.choose(ServiceConstant.SSO_AUTH);
         //此地址就是http://ip:port
         URI uri = serviceInstance.getUri();
-        //令牌申请的地址 http://localhost:40400/auth/oauth/token
+        //令牌申请的地址 http://localhost:40400/oauth/token
         String authUrl = uri+ "/oauth/token";
         //定义header
         LinkedMultiValueMap<String, String> header = new LinkedMultiValueMap<>();

@@ -2,12 +2,14 @@ package com.styzf.sso.service.impl;
 
 import com.styzf.core.common.util.ConvertUtil;
 import com.styzf.sso.dto.user.MenuDTO;
+import com.styzf.sso.dto.user.RoleDTO;
 import com.styzf.sso.dto.user.UserDTO;
 import com.styzf.sso.dto.user.UserExt;
 import com.styzf.sso.mapper.CompanyUserMapper;
 import com.styzf.sso.mapper.MenuMapper;
 import com.styzf.sso.mapper.UserMapper;
 import com.styzf.sso.po.MyUser;
+import com.styzf.sso.service.RoleService;
 import com.styzf.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Administrator
@@ -33,6 +36,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private MenuMapper menuMapper;
 
+    @Autowired
+    private RoleService roleService;
+    
     //根据账号查询xcUser信息
     @Override
     public UserDTO findXcUserByUsername(String username){
@@ -58,10 +64,19 @@ public class UserServiceImpl implements UserService {
         if(user == null){
             return null;
         }
-        //用户id
         String userId = user.getId();
-        //查询用户所有权限
-        List<MenuDTO> menuList = menuMapper.selectPermissionByUserId(userId);
+    
+        UserExt xcUserExt = ConvertUtil.convert(user, UserExt.class);
+        //设置权限
+        List<RoleDTO> roleList = roleService.getByUserId(userId);
+        List<String> roleIdList = roleList.stream().map(RoleDTO::getId).collect(Collectors.toList());
+    
+        if (! CollectionUtils.isEmpty(roleIdList)) {
+            //查询用户所有权限
+            List<MenuDTO> menuList = menuMapper.selectPermissionByUserId(roleIdList);
+            xcUserExt.setPermissions(menuList);
+            xcUserExt.setRoleList(roleList);
+        }
 
         //根据用户id查询用户所属公司id 公司相关的先不做处理
 //        XcCompanyUser xcCompanyUser = xcCompanyUserRepository.findByUserId(userId);
@@ -70,9 +85,7 @@ public class UserServiceImpl implements UserService {
 //        if(xcCompanyUser!=null){
 //            companyId = xcCompanyUser.getCompanyId();
 //        }
-        UserExt xcUserExt = ConvertUtil.convert(user, UserExt.class);
-        //设置权限
-        xcUserExt.setPermissions(menuList);
+
         return xcUserExt;
 
     }
