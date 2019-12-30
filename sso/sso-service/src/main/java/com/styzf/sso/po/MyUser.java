@@ -21,7 +21,7 @@ import java.util.Date;
  */
 @Data
 @ToString
-@Table(name="xc_user")
+@Table(name="st_user")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="用户对象", description="用户表")

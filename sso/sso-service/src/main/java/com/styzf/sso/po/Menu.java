@@ -20,7 +20,7 @@ import java.util.Date;
  */
 @Data
 @ToString
-@Table(name="xc_menu")
+@Table(name="st_menu")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="权限表", description="权限表")

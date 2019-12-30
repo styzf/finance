@@ -22,7 +22,7 @@ import java.util.Date;
 @Data
 @ToString
 @Entity
-@Table(name="xc_permission")
+@Table(name="st_permission")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="角色权限表", description="角色权限表")

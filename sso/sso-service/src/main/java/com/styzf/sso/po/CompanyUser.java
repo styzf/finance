@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 @Data
 @ToString
-@Table(name="xc_menu")
+@Table(name="st_menu")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="公司用户中间关联表", description="公司用户中间关联表")
