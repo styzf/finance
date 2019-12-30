@@ -11,7 +11,7 @@
             *
         FROM
             st_role
-            FROM
+            WHERE
             id IN ( SELECT role_id FROM st_user_role WHERE user_id = #{userId} )
     </select>
 </mapper>
