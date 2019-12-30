@@ -1,5 +1,6 @@
 package com.styzf.sso.po;
 
+import com.styzf.mybatis.base.BasePO;
 import com.styzf.mybatis.util.IdWorkerGenId;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -23,16 +24,13 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="权限表", description="权限表")
-public class Menu {
+public class Menu extends BasePO {
     
-    @Id
-    @KeySql(genId = IdWorkerGenId.class)
-    private String id;
     private String code;
     @Column(name="p_code")
     private String pCode;
     @Column(name="p_id")
-    private String pId;
+    private Long pId;
     @Column(name="menu_name")
     private String menuName;
     private String url;
@@ -42,10 +40,5 @@ public class Menu {
     private Integer sort;
     private String status;
     private String icon;
-    @Column(name="create_time")
-    private Date createTime;
-    @Column(name="update_time")
-    private Date updateTime;
-
 
 }

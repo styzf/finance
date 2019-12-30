@@ -1,5 +1,6 @@
 package com.styzf.sso.po;
 
+import com.styzf.mybatis.base.BasePO;
 import com.styzf.mybatis.util.IdWorkerGenId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,18 +25,13 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="用户对象", description="用户表")
-public class MyUser {
-    
-    @Id
-    @KeySql(genId = IdWorkerGenId.class)
-    private String id;
+public class MyUser extends BasePO {
     
     @ApiModelProperty(value = "用户名")
     private String username;
     
     @ApiModelProperty(value = "用户密码")
     private String password;
-    
     
     private String salt;
     
@@ -62,13 +58,5 @@ public class MyUser {
     
     @ApiModelProperty(value = "状态")
     private String status;
-    
-    @Column(name="create_time")
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
-    
-    @Column(name="update_time")
-    @ApiModelProperty(value = "修改时间")
-    private Date updateTime;
 
 }

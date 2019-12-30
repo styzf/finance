@@ -24,5 +24,5 @@ public interface RoleMapper extends Mapper<Role> {
 	 * @param userId
 	 * @return
 	 */
-	List<RoleDTO> getByUserId(String userId);
+	List<RoleDTO> getByUserId(Long userId);
 }

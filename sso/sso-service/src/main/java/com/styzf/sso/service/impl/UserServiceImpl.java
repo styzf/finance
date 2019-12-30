@@ -64,19 +64,20 @@ public class UserServiceImpl implements UserService {
         if(user == null){
             return null;
         }
-        String userId = user.getId();
+        Long userId = user.getId();
     
         UserExt xcUserExt = ConvertUtil.convert(user, UserExt.class);
         //设置权限
         List<RoleDTO> roleList = roleService.getByUserId(userId);
-        List<String> roleIdList = roleList.stream().map(RoleDTO::getId).collect(Collectors.toList());
-    
-        if (! CollectionUtils.isEmpty(roleIdList)) {
-            //查询用户所有权限
-            List<MenuDTO> menuList = menuMapper.selectPermissionByUserId(roleIdList);
-            xcUserExt.setPermissions(menuList);
-            xcUserExt.setRoleList(roleList);
+        if (CollectionUtils.isEmpty(roleList)) {
+            return xcUserExt;
         }
+        List<Long> roleIdList = roleList.stream().map(RoleDTO::getId).collect(Collectors.toList());
+    
+        //查询用户所有权限
+        List<MenuDTO> menuList = menuMapper.selectPermissionByUserId(roleIdList);
+        xcUserExt.setPermissions(menuList);
+        xcUserExt.setRoleList(roleList);
 
         //根据用户id查询用户所属公司id 公司相关的先不做处理
 //        XcCompanyUser xcCompanyUser = xcCompanyUserRepository.findByUserId(userId);

@@ -6,8 +6,7 @@
     <resultMap id="BaseResultMap" type="com.styzf.sso.dto.user.RoleDTO" autoMapping="true">
     </resultMap>
 
-    <select id="getByUserId" parameterType="java.lang.String"
-            resultMap="BaseResultMap">
+    <select id="getByUserId" resultMap="BaseResultMap">
         SELECT
             *
         FROM

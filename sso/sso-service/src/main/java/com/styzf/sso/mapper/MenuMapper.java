@@ -17,5 +17,5 @@ import java.util.List;
  */
 @Repository
 public interface MenuMapper extends Mapper<Menu> {
-	List<MenuDTO> selectPermissionByUserId(List<String> roleIdList);
+	List<MenuDTO> selectPermissionByUserId(List<Long> roleIdList);
 }

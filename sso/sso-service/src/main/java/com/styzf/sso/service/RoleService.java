@@ -20,5 +20,5 @@ public interface RoleService extends BaseService<RoleDTO> {
 	 * @param userId
 	 * @return
 	 */
-	List<RoleDTO> getByUserId(String userId);
+	List<RoleDTO> getByUserId(Long userId);
 }

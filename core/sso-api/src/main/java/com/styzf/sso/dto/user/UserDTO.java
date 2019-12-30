@@ -1,5 +1,6 @@
 package com.styzf.sso.dto.user;
 
+import com.styzf.core.common.base.BaseDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,9 +19,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="用户对象", description="用户表")
-public class UserDTO {
-    
-    private String id;
+public class UserDTO extends BaseDTO {
     
     @ApiModelProperty(value = "用户名")
     private String username;
@@ -55,10 +54,4 @@ public class UserDTO {
     @ApiModelProperty(value = "状态")
     private String status;
     
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
-    
-    @ApiModelProperty(value = "修改时间")
-    private Date updateTime;
-
 }

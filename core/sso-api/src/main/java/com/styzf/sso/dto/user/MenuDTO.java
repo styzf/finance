@@ -1,5 +1,6 @@
 package com.styzf.sso.dto.user;
 
+import com.styzf.core.common.base.BaseDTO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,9 +18,8 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="权限表", description="权限表")
-public class MenuDTO {
+public class MenuDTO extends BaseDTO {
     
-    private String id;
     private String code;
     private String pCode;
     private String pId;
@@ -30,7 +30,5 @@ public class MenuDTO {
     private Integer sort;
     private String status;
     private String icon;
-    private Date createTime;
-    private Date updateTime;
 
 }

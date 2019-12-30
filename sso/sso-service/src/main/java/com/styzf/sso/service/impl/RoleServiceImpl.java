@@ -20,8 +20,8 @@ import java.util.List;
 public class RoleServiceImpl extends BaseServiceImpl<Role, RoleDTO> implements RoleService {
     
     @Override
-    public List<RoleDTO> getByUserId(String userId) {
-        Assert.notBlank(userId, "查询角色用户id不能为空！");
+    public List<RoleDTO> getByUserId(Long userId) {
+        Assert.notNull(userId, "查询角色用户id不能为空！");
         return ((RoleMapper) mapper).getByUserId(userId);
     }
 }
