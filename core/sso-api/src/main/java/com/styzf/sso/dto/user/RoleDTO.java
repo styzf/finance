@@ -20,8 +20,6 @@ import java.util.Date;
 @ApiModel(value="角色表", description="角色表")
 public class RoleDTO extends BaseDTO {
     
-    private String id;
-    
     /**
      * 角色名
      */
@@ -42,14 +40,4 @@ public class RoleDTO extends BaseDTO {
      */
     private String status;
     
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-    
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-
 }
