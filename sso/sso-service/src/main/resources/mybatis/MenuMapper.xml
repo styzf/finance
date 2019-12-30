@@ -28,7 +28,7 @@
                FROM
                    xc_permission
                WHERE role_id IN
-               <foreach collection="roleIdList" index="index" item="roleId" open="(" separator="," close=")">
+               <foreach collection="list" index="index" item="roleId" open="(" separator="," close=")">
                    #{roleId}
                </foreach>
               )
