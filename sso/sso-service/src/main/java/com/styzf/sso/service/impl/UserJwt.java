@@ -21,7 +21,7 @@ import java.util.Collection;
 @ApiModel(value="用户扩展对象", description="用户扩展对象")
 public class UserJwt extends User {
 
-    private String id;
+    private Long id;
     private String name;
     private String userpic;
     private String utype;
