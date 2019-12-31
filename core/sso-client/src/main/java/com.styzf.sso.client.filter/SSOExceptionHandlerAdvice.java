@@ -31,7 +31,7 @@ import javax.validation.ValidationException;
  *
  */
 @Slf4j
-@Order(-1)
+@Order(-2)
 @ControllerAdvice
 public class SSOExceptionHandlerAdvice {
    
