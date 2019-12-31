@@ -17,5 +17,11 @@ import java.util.List;
  */
 @Repository
 public interface MenuMapper extends Mapper<Menu> {
+	
+	/**
+	 *
+	 * @param roleIdList
+	 * @return
+	 */
 	List<MenuDTO> selectPermissionByUserId(List<Long> roleIdList);
 }
