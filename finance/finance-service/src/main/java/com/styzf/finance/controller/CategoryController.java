@@ -33,14 +33,24 @@ public class CategoryController implements CategoryControllerDoc {
 	@Autowired
 	private ICategoryService categoryService;
 	
+	/**
+	 * 分页查询分类列表
+	 * @param page 页码
+	 * @param size 页大小
+	 * @param name 名称
+	 * @param parentId 父id
+	 * @param categoryKey 关键key
+	 * @return 分类列表数据
+	 */
 	@Override
 	@GetMapping
-	public Response getCategory(Integer page, Integer size, String name, Long parentId) {
+	public Response getCategory(Integer page, Integer size, String name, Long parentId, String categoryKey) {
 		CategoryDTO dto = new CategoryDTO();
 		dto.setName(name);
 		dto.setParentId(parentId);
 		dto.setPage(page);
 		dto.setSize(size);
+		dto.setCategoryKey(categoryKey);
 		Pager<CategoryDTO> pager = categoryService.basePage(dto);
 		return SuccessResponseData.newInstance(pager);
 	}
@@ -53,7 +63,7 @@ public class CategoryController implements CategoryControllerDoc {
 		return SuccessResponseData.newInstance(categoryTree);
 	}
 	
-	@PreAuthorize("hasAuthority('add_category')")
+//	@PreAuthorize("hasAuthority('add_category')")
 	@Override
 	@PostMapping
 	public Response addCategory(@RequestBody @Valid CategoryAddRequest request) {
@@ -76,7 +86,7 @@ public class CategoryController implements CategoryControllerDoc {
 		return SuccessResponseData.newInstance();
 	}
 	
-	@PreAuthorize("hasAuthority('update_category')")
+//	@PreAuthorize("hasAuthority('update_category')")
 	@Override
 	@PutMapping
 	public Response updateCategory(@RequestBody @Valid CategoryUpdateRequest request) {

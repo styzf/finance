@@ -28,7 +28,7 @@ public class ConvertUtil {
             object = clazz.newInstance();
             BeanUtils.copyProperties(source, object);
         } catch (Exception e) {
-            log.error(JSON.toJSONString(e.getStackTrace()));
+            log.warn(JSON.toJSONString(e.getStackTrace()));
         }
         return object;
     }

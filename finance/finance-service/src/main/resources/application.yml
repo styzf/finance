@@ -15,6 +15,8 @@ styzf:
     authUrl:
       - url: /category/tree
         type: get
+      - url: /category
+        type: post
   apiInfo:
     title: STYZF-TEST REST API
     description: STYZF财务管理 API

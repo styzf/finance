@@ -31,4 +31,5 @@ public interface IFinanceService extends BaseService<FinanceDTO> {
 	 * @return 页面显示数据
 	 */
 	List<FinanceListData> getFinance(@PathVariable("year") Integer year, @PathVariable("year") Integer month);
+ 
 }

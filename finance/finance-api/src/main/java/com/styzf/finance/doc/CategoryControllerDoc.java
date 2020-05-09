@@ -22,16 +22,19 @@ public interface CategoryControllerDoc {
 	
 	/**
 	 * 分页查询分类列表
-	 * @param page
-	 * @param size
-	 * @return
+	 * @param page 页码
+	 * @param size 页大小
+	 * @param name 名称
+	 * @param parentId 父id
+	 * @param categoryKey 关键key
+	 * @return 分类列表数据
 	 */
 	@ApiOperation("分页查询分类列表")
 //	@ApiImplicitParams({
 //			@ApiImplicitParam(name="page",value = "页码",required=true,paramType="path",dataType="int"),
 //			@ApiImplicitParam(name="size",value = "每页记录数",required=true,paramType="path",dataType="int")
 //	})
-	public Response getCategory(Integer page, Integer size,  String name, Long parentId);
+	public Response getCategory(Integer page, Integer size,  String name, Long parentId, String categoryKey);
 	
 	/**
 	 * 根据父分类id获取分类树列表

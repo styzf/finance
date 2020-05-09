@@ -30,12 +30,37 @@ public class FinanceController implements FinanceControllerDoc {
 	@Autowired
 	private IFinanceService financeService;
 	
+	/**
+	 * 财务管理页面数据
+	 * @param year 要查询的年份
+	 * @param month 要查询的月份
+	 * @return 分类-记账管理下所有财务数据
+	 */
 	@Override
 	@GetMapping
 	public Response getFinance(Integer year, Integer month) {
 		return SuccessResponseData.newInstance(financeService.getFinance(year, month));
 	}
-
+	
+	/**
+	 * 财务管理页面数据
+	 * @param year 要查询的年份
+	 * @param month 要查询的月份
+	 * @return 分类-记账管理下所有财务数据
+	 */
+	@Override
+	@GetMapping("book")
+	public Response getFinanceBook(Integer year, Integer month, Long categoryId) {
+		FinanceDTO dto = new FinanceDTO();
+		dto.setYear(year).setMonth(month).setCategoryId(categoryId);
+		return SuccessResponseData.newInstance(financeService.basePage(dto));
+	}
+	
+	/**
+	 * 添加备注数据
+	 * @param request {@link FinanceRemarkRequest}
+	 * @return
+	 */
 	@Override
 	@PutMapping("addRemark")
 	public Response addRemark(@RequestBody FinanceRemarkRequest request) {
@@ -44,6 +69,11 @@ public class FinanceController implements FinanceControllerDoc {
 		return SuccessResponseData.newInstance();
 	}
 	
+	/**
+	 * 添加财务数据
+	 * @param request {@link FinanceAddRequest}
+	 * @return 成功正常返回，失败由拦截器处理
+	 */
 	@Override
 	@PostMapping
 	public Response addFinance(@Valid @RequestBody FinanceAddRequest request) {

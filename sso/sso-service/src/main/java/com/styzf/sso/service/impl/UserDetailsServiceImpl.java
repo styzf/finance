@@ -95,6 +95,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDetails.setUserpic(userext.getUserpic());//用户头像
     
         userUtils.setUserAuth(username, userPermission);
+        
         return userDetails;
     }
     

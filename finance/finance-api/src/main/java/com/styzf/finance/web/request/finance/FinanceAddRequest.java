@@ -38,4 +38,7 @@ public class FinanceAddRequest {
 	@NotNull
 	@ApiModelProperty("日")
 	private Integer day;
+	
+	@ApiModelProperty("备注")
+	private String remark;
 }
