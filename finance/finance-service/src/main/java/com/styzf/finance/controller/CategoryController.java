@@ -73,7 +73,7 @@ public class CategoryController implements CategoryControllerDoc {
 		return SuccessResponseData.newInstance();
 	}
 	
-	@PreAuthorize("hasAuthority('delete_category')")
+//	@PreAuthorize("hasAuthority('delete_category')")
 	@Override
 	@DeleteMapping
 	public Response delete(@RequestBody List<Long> categoryIds) {
