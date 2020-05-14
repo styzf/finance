@@ -7,6 +7,8 @@ import com.styzf.finance.web.request.finance.FinanceRemarkRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.List;
+
 /**
  * <p>
  * 账单表 前端控制器
@@ -33,5 +35,8 @@ public interface FinanceControllerDoc {
 	
 	@ApiOperation("账本数据查询")
 	public Response getFinanceBook(Integer year, Integer month, Long categoryId);
+	
+	@ApiOperation("批量删除账单数据")
+	public Response delete(List<Long> ids);
 }
 
