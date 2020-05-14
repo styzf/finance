@@ -23,6 +23,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 基础实现类
@@ -132,8 +133,12 @@ public abstract class BaseServiceImpl<P extends BasePO,D extends BaseDTO>
 				mapper.updateByExampleSelective(p,example);
 			}
 		} else {
-			p.setCreateTime(now);
-			p.setUpdateTime(now);
+			if (Objects.isNull(p.getCreateTime())) {
+				p.setCreateTime(now);
+			}
+			if (Objects.isNull(p.getUpdateTime())) {
+				p.setUpdateTime(now);
+			}
 			insertBefore(p);
 			mapper.insertSelective(p);
 		}
