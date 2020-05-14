@@ -1,6 +1,7 @@
 package com.styzf.finance.service.impl;
 
 import com.styzf.core.common.util.ConvertUtil;
+import com.styzf.core.common.util.date.DateUtil;
 import com.styzf.finance.dto.category.CategoryTree;
 import com.styzf.finance.dto.finance.FinanceDTO;
 import com.styzf.finance.dto.finance.FinanceListData;
@@ -112,6 +113,13 @@ public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> imp
 	
 	@Override
 	protected void insertOrUpdateBefore(FinanceDTO dto) {
+		if (Objects.isNull(dto.getCreateTime()) &&
+			Objects.nonNull(dto.getYear()) &&
+			Objects.nonNull(dto.getMonth()) &&
+			Objects.nonNull(dto.getDay())) {
+			DateUtil.stringToDate("" + dto.getYear() + "-" + dto.getMoney() + "-" + dto.getDay());
+		}
+		
 		Weekend<Finance> weekend = Weekend.of(Finance.class);
 		weekend.weekendCriteria().
 				andEqualTo(Finance::getYear, dto.getYear()).
