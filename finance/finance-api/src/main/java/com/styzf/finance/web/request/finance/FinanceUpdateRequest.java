@@ -40,4 +40,15 @@ public class FinanceUpdateRequest {
 	@ApiModelProperty("金额")
 	private Long money;
 	
+	@ApiModelProperty("备注")
+	private String remark;
+	
+	@ApiModelProperty("年")
+	private Integer year;
+	
+	@ApiModelProperty("月")
+	private Integer month;
+	
+	@ApiModelProperty("日期")
+	private Integer day;
 }

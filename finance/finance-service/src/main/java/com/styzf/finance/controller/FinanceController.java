@@ -10,6 +10,7 @@ import com.styzf.finance.service.IFinanceService;
 import com.styzf.finance.doc.FinanceControllerDoc;
 import com.styzf.finance.web.request.finance.FinanceAddRequest;
 import com.styzf.finance.web.request.finance.FinanceRemarkRequest;
+import com.styzf.finance.web.request.finance.FinanceUpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -95,6 +96,14 @@ public class FinanceController implements FinanceControllerDoc {
 		ids.stream().forEach(id -> {
 			financeService.baseDeleteById(id, null);
 		});
+		return SuccessResponseData.newInstance();
+	}
+	
+	@Override
+	@PutMapping
+	public Response updateFinance(@RequestBody @Valid FinanceUpdateRequest request) {
+		FinanceDTO dto = ConvertUtil.convert(request, FinanceDTO.class);
+		financeService.baseInsertOrUpdate(dto);
 		return SuccessResponseData.newInstance();
 	}
 }

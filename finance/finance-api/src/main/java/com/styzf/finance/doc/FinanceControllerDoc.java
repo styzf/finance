@@ -4,9 +4,12 @@ package com.styzf.finance.doc;
 import com.styzf.core.common.response.Response;
 import com.styzf.finance.web.request.finance.FinanceAddRequest;
 import com.styzf.finance.web.request.finance.FinanceRemarkRequest;
+import com.styzf.finance.web.request.finance.FinanceUpdateRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -38,5 +41,8 @@ public interface FinanceControllerDoc {
 	
 	@ApiOperation("批量删除账单数据")
 	public Response delete(List<Long> ids);
+	
+	@ApiOperation("修改账单数据")
+	public Response updateFinance(FinanceUpdateRequest request);
 }
 
