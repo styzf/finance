@@ -120,6 +120,9 @@ public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> imp
 			DateUtil.stringToDate("" + dto.getYear() + "-" + dto.getMoney() + "-" + dto.getDay());
 		}
 		
+		if (Objects.nonNull(dto.getId())) {
+			return;
+		}
 		Weekend<Finance> weekend = Weekend.of(Finance.class);
 		weekend.weekendCriteria().
 				andEqualTo(Finance::getYear, dto.getYear()).
