@@ -17,10 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.weekend.Weekend;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * <p>
@@ -117,7 +114,8 @@ public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> imp
 			Objects.nonNull(dto.getYear()) &&
 			Objects.nonNull(dto.getMonth()) &&
 			Objects.nonNull(dto.getDay())) {
-			DateUtil.stringToDate("" + dto.getYear() + "-" + dto.getMoney() + "-" + dto.getDay());
+			Date date = DateUtil.stringToDate("" + dto.getYear() + "-" + dto.getMoney() + "-" + dto.getDay());
+			dto.setCreateTime(date);
 		}
 		
 		if (Objects.nonNull(dto.getId())) {
