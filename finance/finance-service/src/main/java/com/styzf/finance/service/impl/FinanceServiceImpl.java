@@ -114,7 +114,7 @@ public class FinanceServiceImpl extends BaseServiceImpl<Finance, FinanceDTO> imp
 			Objects.nonNull(dto.getYear()) &&
 			Objects.nonNull(dto.getMonth()) &&
 			Objects.nonNull(dto.getDay())) {
-			Date date = DateUtil.stringToDate("" + dto.getYear() + "-" + dto.getMoney() + "-" + dto.getDay());
+			Date date = DateUtil.stringToDate("" + dto.getYear() + "-" + dto.getMonth() + "-" + dto.getDay());
 			dto.setCreateTime(date);
 		}
 		
