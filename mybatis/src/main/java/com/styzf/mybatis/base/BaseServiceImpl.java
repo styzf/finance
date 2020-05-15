@@ -116,6 +116,7 @@ public abstract class BaseServiceImpl<P extends BasePO,D extends BaseDTO>
 	public D baseInsertOrUpdate(D d) {
 		Date now = DateUtil.now();
 		insertOrUpdateBefore(d);
+		
 		if (null == d.getDeleteFlag()) {
 			d.setDeleteFlag(DeleteEnum.EXIST.getStatus());
 		}
