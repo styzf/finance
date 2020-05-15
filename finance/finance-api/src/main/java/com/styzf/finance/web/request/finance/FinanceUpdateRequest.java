@@ -21,7 +21,7 @@ import java.util.Date;
 public class FinanceUpdateRequest {
 	
 	@ApiModelProperty("id")
-	@NotEmpty(message = "账单id不能为空")
+	@NotNull(message = "账单id不能为空")
 	private Long id;
 	
 	@ApiModelProperty("记账名")
