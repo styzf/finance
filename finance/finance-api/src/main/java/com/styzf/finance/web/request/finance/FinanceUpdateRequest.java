@@ -22,7 +22,7 @@ public class FinanceUpdateRequest {
 	
 	@ApiModelProperty("id")
 	@NotEmpty(message = "账单id不能为空")
-	private String id;
+	private Long id;
 	
 	@ApiModelProperty("记账名")
 	private String name;
