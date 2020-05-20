@@ -79,9 +79,16 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, CategoryDTO> 
 	@Override
 	protected void insertBefore(Category category) {
 		Long parentId = category.getParentId();
+		String parentKey = null;
 		if (Objects.isNull(parentId)) {
 			parentId = CategoryConstant.ROOT_CATEGORY_ID;
+			parentKey = CategoryConstant.ROOT_CATEGORY_KEY;
+		} else {
+			Category po = mapper.selectByPrimaryKey(parentId);
+			parentKey = po.getCategoryKey();
 		}
+		category.setParentId(parentId);
+		category.setParentKey(parentKey);
 		super.insertBefore(category);
 	}
 	
