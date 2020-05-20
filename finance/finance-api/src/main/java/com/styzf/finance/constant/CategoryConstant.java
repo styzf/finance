@@ -13,4 +13,9 @@ public interface CategoryConstant {
 	 * 所有分类最高的分类级别
 	 */
 	String ROOT_CATEGORY_KEY = "root";
+
+	/**
+	 * 账本key
+	 */
+	String BOOK_CATEGORY_KEY = "finance_book";
 }
