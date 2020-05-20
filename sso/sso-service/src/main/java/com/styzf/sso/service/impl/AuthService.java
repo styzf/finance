@@ -143,6 +143,9 @@ public class AuthService {
         //申请令牌信息
         Map exchangeBody = exchange.getBody();
         Map data = new HashMap<String, Object>();
+        if (Objects.isNull(exchangeBody)) {
+            return null;
+        }
         if (Boolean.TRUE.equals(exchangeBody.get("success"))) {
             data = (Map) exchangeBody.get("data");
         }
