@@ -15,10 +15,12 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 import tk.mybatis.spring.annotation.MapperScan;
 
+import java.util.TimeZone;
+
 /**
- * 
+ *
  * @author styzf
- * @date 2018年7月23日 
+ * @date 2018年7月23日
  *
  */
 @Slf4j
@@ -33,6 +35,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @EnableDiscoveryClient
 public class FinanceApplicationMain extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
         SpringApplication.run(FinanceApplicationMain.class, args);
         log.info(StringUtils.center(" styzf-finance-provider start success! ", 80, "*"));
     }
