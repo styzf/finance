@@ -37,7 +37,7 @@ public interface FinanceControllerDoc {
 	public Response addRemark(FinanceRemarkRequest request);
 	
 	@ApiOperation("账本数据查询")
-	public Response getFinanceBook(Integer year, Integer month, Long categoryId);
+	public Response getFinanceBook(Integer year, Integer month, Long categoryId, Integer page, Integer size);
 	
 	@ApiOperation("批量删除账单数据")
 	public Response delete(List<Long> ids);
