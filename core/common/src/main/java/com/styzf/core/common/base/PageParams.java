@@ -44,10 +44,10 @@ public class PageParams implements Serializable{
 	}
 	
 	public PageParams setPage(Integer page) {
-		if (null == page || page < 0) {
-			return;
+		if (Objects.nonNull(page) && page > 0) {
+			this.page = page;
 		}
-		this.page = page;
+		return this;
 	}
 	
 	public int getSize() {
@@ -55,10 +55,10 @@ public class PageParams implements Serializable{
 	}
 	
 	public PageParams setSize(Integer size) {
-		if (Objects.isNull(size) || size < 0) {
-			return;
+		if (Objects.nonNull(size) && size > 0) {
+			this.size = size;
 		}
-		this.size = size;
+		return this;
 	}
 	
 	public String getOrderBy() {
@@ -67,5 +67,6 @@ public class PageParams implements Serializable{
 	
 	public PageParams setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
+		return this;
 	}
 }
