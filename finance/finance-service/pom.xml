@@ -7,7 +7,7 @@
   	</parent>
   	<artifactId>finance-service</artifactId>
 	<packaging>jar</packaging>
-  
+
     <dependencies>
 		<dependency>
 			<groupId>com.styzf</groupId>
@@ -54,12 +54,12 @@
 
 		<!--切面-->
 		<dependency>
-          <groupId>org.aspectj</groupId>  
-          <artifactId>aspectjrt</artifactId>  
-        </dependency>  
-        <dependency>  
-          <groupId>org.aspectj</groupId>  
-          <artifactId>aspectjweaver</artifactId>  
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjrt</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjweaver</artifactId>
         </dependency>
 		<dependency>
 			<groupId>com.styzf</groupId>
@@ -70,33 +70,51 @@
     </dependencies>
 
 	<build>
+		<finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
 				<configuration>
-					<mainClass>com.styzf.sso.FinanceApplicationMain</mainClass>
+					<archive>
+						<manifest>
+							<!--运行jar包时运行的主类，要求类全名-->
+							<mainClass>com.styzf.finance.FinanceApplicationMain</mainClass>
+							<!-- 是否指定项目classpath下的依赖 -->
+							<addClasspath>true</addClasspath>
+							<!-- 指定依赖的时候声明前缀 -->
+							<classpathPrefix>lib/</classpathPrefix>
+							<packageName>finance</packageName>
+						</manifest>
+					</archive>
+					<excludes>
+						<!--外置配置文件-->
+						<exclude>*.yml</exclude>
+						<exclude>*.txt</exclude>
+					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
-					<execution>
+					<execution><!-- 配置执行器 -->
+						<id>make-assembly</id>
+						<phase>package</phase><!-- 绑定到package生命周期阶段上 -->
 						<goals>
-							<goal>repackage</goal>
+							<goal>single</goal><!-- 只运行一次 -->
 						</goals>
+						<configuration>
+							<finalName>${project.name}</finalName>
+                            <descriptors>
+                                <descriptor>src/main/resources/assembly.xml</descriptor><!--配置描述文件路径-->
+                            </descriptors>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
-	   <resources>
-	       <resource>
-	           <directory>src/main/java</directory>
-	           <includes>
-	               <include>**/*.xml</include>
-	           </includes>
-	       </resource>
-	       <resource>
-	           <directory>src/main/resources</directory>
-	       </resource>
-	   </resources>
 	</build>
 
 </project>
