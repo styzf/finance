@@ -7,7 +7,7 @@ import java.util.Objects;
 
 /**
  * 页面参数对象
- * @author Gene
+ * @author styzf
  *
  */
 public class PageParams implements Serializable{
@@ -25,10 +25,10 @@ public class PageParams implements Serializable{
 	}
 	
 	public PageParams(Integer page, Integer size) {
-		if (null != page && page > 0) {
+		if (Objects.nonNull(page) && page > 0) {
 			this.page = page;
 		}
-		if (null != size && size > 0) {
+		if (Objects.nonNull(size) && size > 0) {
 			this.size = size;
 		}
 	}
@@ -43,29 +43,30 @@ public class PageParams implements Serializable{
 		return page;
 	}
 	
-	public void setPage(Integer page) {
-		if (null == page || page < 0) {
-			return;
+	public PageParams setPage(Integer page) {
+		if (Objects.nonNull(page) && page > 0) {
+			this.page = page;
 		}
-		this.page = page;
+		return this;
 	}
 	
 	public int getSize() {
 		return size;
 	}
 	
-	public void setSize(Integer size) {
-		if (Objects.isNull(size) || size < 0) {
-			return;
+	public PageParams setSize(Integer size) {
+		if (Objects.nonNull(size) && size > 0) {
+			this.size = size;
 		}
-		this.size = size;
+		return this;
 	}
 	
 	public String getOrderBy() {
 		return orderBy;
 	}
 	
-	public void setOrderBy(String orderBy) {
+	public PageParams setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
+		return this;
 	}
 }

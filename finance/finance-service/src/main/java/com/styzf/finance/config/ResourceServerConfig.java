@@ -1,5 +1,8 @@
 package com.styzf.finance.config;
 
+import com.alibaba.fastjson.JSON;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
  * @author Administrator
  * @version 1.0
  **/
+@Slf4j
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)//激活方法上的PreAuthorize注解
@@ -47,12 +51,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      * @return 公钥 Key
      */
     private String getPubKey() {
-        Resource resource = new ClassPathResource(PUBLIC_KEY);
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        Resource resource = new ClassPathResource(PUBLIC_KEY, classLoader);
         try {
             InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
             BufferedReader br = new BufferedReader(inputStreamReader);
             return br.lines().collect(Collectors.joining("\n"));
         } catch (IOException ioe) {
+            log.error(JSON.toJSONString(ioe.getStackTrace()));
             return null;
         }
     }

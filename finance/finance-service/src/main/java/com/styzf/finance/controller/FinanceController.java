@@ -54,9 +54,9 @@ public class FinanceController implements FinanceControllerDoc {
 	 */
 	@Override
 	@GetMapping("book")
-	public Response getFinanceBook(Integer year, Integer month, Long categoryId) {
+	public Response getFinanceBook(Integer year, Integer month, Long categoryId, Integer page, Integer size) {
 		FinanceDTO dto = new FinanceDTO();
-		dto.setYear(year).setMonth(month).setCategoryId(categoryId);
+		dto.setYear(year).setMonth(month).setCategoryId(categoryId).setPage(page).setSize(size);
 		return SuccessResponseData.newInstance(financeService.basePage(dto));
 	}
 	
