@@ -32,6 +32,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     //公钥
     private static final String PUBLIC_KEY = "publickey.txt";
+    private static final String LINUX_PUBLIC_KEY = "/usr/src/myapp/publickey.txt";
 
     //定义JwtTokenStore，使用jwt令牌
     @Bean
@@ -52,12 +53,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      */
     private String getPubKey() {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        Resource resource = new ClassPathResource(PUBLIC_KEY, classLoader);
+        String property = System.getProperty("user.dir");
+        log.info(property + PUBLIC_KEY);
+        Resource resource = new ClassPathResource(property + PUBLIC_KEY, classLoader);
         try {
             InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
             BufferedReader br = new BufferedReader(inputStreamReader);
             return br.lines().collect(Collectors.joining("\n"));
         } catch (IOException ioe) {
+            
             log.error(JSON.toJSONString(ioe.getStackTrace()));
             return null;
         }
