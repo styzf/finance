@@ -15,10 +15,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.stream.Collectors;
 
 /**
@@ -55,9 +52,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         ClassLoader classLoader = this.getClass().getClassLoader();
         String property = System.getProperty("user.dir");
         log.info(property + File.separatorChar + PUBLIC_KEY);
-        Resource resource = new ClassPathResource(property + File.separatorChar + PUBLIC_KEY, classLoader);
+        
         try {
-            InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
+            InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(property + File.separatorChar + PUBLIC_KEY));
             BufferedReader br = new BufferedReader(inputStreamReader);
             return br.lines().collect(Collectors.joining("\n"));
         } catch (IOException ioe) {
