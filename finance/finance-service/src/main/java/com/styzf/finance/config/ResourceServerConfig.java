@@ -54,8 +54,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private String getPubKey() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         String property = System.getProperty("user.dir");
-        log.info(property + File.pathSeparator + PUBLIC_KEY);
-        Resource resource = new ClassPathResource(property + File.pathSeparator + PUBLIC_KEY, classLoader);
+        log.info(property + File.separatorChar + PUBLIC_KEY);
+        Resource resource = new ClassPathResource(property + File.separatorChar + PUBLIC_KEY, classLoader);
         try {
             InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
             BufferedReader br = new BufferedReader(inputStreamReader);
