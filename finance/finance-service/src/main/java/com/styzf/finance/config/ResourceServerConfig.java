@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
@@ -32,7 +33,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     //公钥
     private static final String PUBLIC_KEY = "publickey.txt";
-    private static final String LINUX_PUBLIC_KEY = "/usr/src/myapp/publickey.txt";
 
     //定义JwtTokenStore，使用jwt令牌
     @Bean
@@ -54,8 +54,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private String getPubKey() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         String property = System.getProperty("user.dir");
-        log.info(property + PUBLIC_KEY);
-        Resource resource = new ClassPathResource(property + PUBLIC_KEY, classLoader);
+        log.info(property + File.pathSeparator + PUBLIC_KEY);
+        Resource resource = new ClassPathResource(property + File.pathSeparator + PUBLIC_KEY, classLoader);
         try {
             InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
             BufferedReader br = new BufferedReader(inputStreamReader);
