@@ -1,8 +1,11 @@
 package com.styzf.finance.config;
 
 import com.alibaba.fastjson.JSON;
+import com.styzf.core.web.config.swagger2.ApiInfoProperties;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -26,8 +29,12 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)//激活方法上的PreAuthorize注解
+@EnableConfigurationProperties({SecurityProperties.class})
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    @Autowired
+    private SecurityProperties properties;
+    
     //公钥
     private static final String PUBLIC_KEY = "publickey.txt";
 
@@ -69,9 +76,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         //所有请求必须认证通过
         http.authorizeRequests()
                 //下边的路径放行
-                .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui",
-                        "/swagger-resources","/swagger-resources/configuration/security",
-                        "/swagger-ui.html","/webjars/**").permitAll();
+                .antMatchers(properties.getMatchers()).permitAll();
 //                .anyRequest().authenticated();
     }
 }

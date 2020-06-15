@@ -29,7 +29,14 @@ styzf:
     license:
     licenseUrl:
     pathsRegex: ^.*(?<!error)$
-
+  security:
+    matchers:
+      - /v2/api-docs
+      - /swagger-resources/configuration/ui
+      - /swagger-resources
+      - /swagger-resources/configuration/security
+      - /swagger-ui.html
+      - /webjars/**
 server:
   port: 8081
   session:
