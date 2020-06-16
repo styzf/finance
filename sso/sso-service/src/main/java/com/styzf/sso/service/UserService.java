@@ -1,6 +1,6 @@
 package com.styzf.sso.service;
 
-import com.styzf.sso.dto.user.UserDTO;
+import com.styzf.sso.dto.UserDTO;
 import com.styzf.sso.dto.user.UserExt;
 
 /**

@@ -3,7 +3,7 @@ package com.styzf.sso.service.impl;
 import com.styzf.core.common.util.ConvertUtil;
 import com.styzf.sso.dto.user.MenuDTO;
 import com.styzf.sso.dto.user.RoleDTO;
-import com.styzf.sso.dto.user.UserDTO;
+import com.styzf.sso.dto.UserDTO;
 import com.styzf.sso.dto.user.UserExt;
 import com.styzf.sso.mapper.CompanyUserMapper;
 import com.styzf.sso.mapper.MenuMapper;

@@ -2,9 +2,6 @@ package com.styzf.sso.service;
 
 import com.styzf.core.common.base.BaseService;
 import com.styzf.sso.dto.user.RoleDTO;
-import com.styzf.sso.dto.user.UserDTO;
-import com.styzf.sso.dto.user.UserExt;
-import com.styzf.sso.po.Role;
 
 import java.util.List;
 
