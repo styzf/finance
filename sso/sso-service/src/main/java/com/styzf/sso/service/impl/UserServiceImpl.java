@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     
     //根据账号查询xcUser信息
     @Override
-    public UserDTO findXcUserByUsername(String username){
+    public UserDTO findUserByUsername(String username){
         if (StringUtils.isEmpty(username)) {
             return null;
         }
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserExt getUserExt(String username){
         //根据账号查询xcUser信息
-        UserDTO user = this.findXcUserByUsername(username);
+        UserDTO user = this.findUserByUsername(username);
         if(user == null){
             return null;
         }
