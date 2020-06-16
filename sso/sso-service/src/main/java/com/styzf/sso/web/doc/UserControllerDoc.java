@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author styzf
@@ -19,4 +20,7 @@ public interface UserControllerDoc {
     
     @ApiOperation("获取用户列表数据")
     public Response users(UserDTO request);
+    
+    @ApiOperation("删除用户列表数据")
+    public Response remove(List<Long> ids);
 }

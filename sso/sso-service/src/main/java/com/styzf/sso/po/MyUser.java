@@ -1,19 +1,14 @@
 package com.styzf.sso.po;
 
 import com.styzf.mybatis.base.BasePO;
-import com.styzf.mybatis.util.IdWorkerGenId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 /**
  * @author styzf
@@ -36,6 +31,7 @@ public class MyUser extends BasePO {
     private String salt;
     
     @ApiModelProperty(value = "用户名")
+    
     private String name;
     
     @ApiModelProperty(value = "用户类型")
