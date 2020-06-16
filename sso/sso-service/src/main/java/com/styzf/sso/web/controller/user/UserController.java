@@ -37,7 +37,7 @@ public class UserController implements UserControllerDoc {
     }
     
     @Override
-    @GetMapping("users")
+    @GetMapping("list")
     public Response users(UserDTO request) {
         return SuccessResponseData.newInstance(userService.basePage(request));
     }
