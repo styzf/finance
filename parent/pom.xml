@@ -1,16 +1,16 @@
-<project xmlns = "http://maven.apache.org/POM/4.0.0" 
-	     xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+<project xmlns = "http://maven.apache.org/POM/4.0.0"
+	     xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
 	     xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent> 
+	<parent>
 		  <groupId>com.styzf</groupId>
 		  <artifactId>common-parent</artifactId>
 		  <version>1.0.0-SNAPSHOT</version>
 	</parent>
-  
+
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>parent</artifactId>
 	<packaging>pom</packaging>
-    
+
 	<distributionManagement>
 	    <repository>
 	      <id>release</id>
@@ -23,12 +23,12 @@
 	      <url>http://120.77.44.99:8081/nexus/content/repositories/snapshots/</url>
 	    </snapshotRepository>
 	</distributionManagement>
-  	
+
   	<!-- 定义全局的属性(定义jar包的版本号) -->
     <properties>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>5.1.40</mysql-connector-java.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <pagehelper.version>5.0.0</pagehelper.version>
         <mapper.version>3.4.0</mapper.version>
@@ -55,10 +55,10 @@
         <fastjson.version>1.2.31</fastjson.version>
         <axis.version>1.4</axis.version>
         <hibernate-validator.version>6.0.11.Final</hibernate-validator.version>
-        
+
         <kafka.version>1.1.0</kafka.version>
         <spring.integration.kafka.version>2.1.0.RELEASE</spring.integration.kafka.version>
-        
+
         <lombok.version>1.16.16</lombok.version>
         <logstash.version>4.11</logstash.version>
 
@@ -68,7 +68,7 @@
         <commons-io.version>2.6</commons-io.version>
         <feign-okhttp.version>8.18.0</feign-okhttp.version>
     </properties>
-    
+
     <!-- 依赖管理配置(用于锁定指定版本) -->
     <dependencyManagement>
 	    <dependencies>
@@ -94,7 +94,7 @@
 	            <artifactId>logstash-logback-encoder</artifactId>
 	            <version>${logstash.version}</version>
 	        </dependency>
-	        
+
 		    <dependency>
 	            <groupId>org.hibernate</groupId>
 	            <artifactId>hibernate-validator</artifactId>
@@ -153,7 +153,7 @@
                 <artifactId>spring-jms</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-            
+
 	        <dependency>
 	            <groupId>com.alibaba</groupId>
 	            <artifactId>fastjson</artifactId>
@@ -211,11 +211,11 @@
 			   <artifactId>p6spy</artifactId>
 			   <version>${p6spy.version}</version>
 			</dependency>
-			<dependency>  
-			  <groupId>org.aspectj</groupId>  
-			  <artifactId>aspectjweaver</artifactId>  
-			  <version>${aspectj.version}</version>  
-			</dependency> 
+			<dependency>
+			  <groupId>org.aspectj</groupId>
+			  <artifactId>aspectjweaver</artifactId>
+			  <version>${aspectj.version}</version>
+			</dependency>
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -283,14 +283,14 @@
 			    <artifactId>spring-aop</artifactId>
 			    <version>${spring.version}</version>
 			</dependency>
-            
+
             <!-- Jackson JSON处理工具包 -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-            
+
             <!-- dubbo相关 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -354,14 +354,14 @@
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
             </dependency>
-            
+
             <!-- 时间操作组件 -->
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>${joda-time.version}</version>
             </dependency>
-            
+
             <!-- 定时任务Quartz -->
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
@@ -376,7 +376,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
+
     <!-- 项目构建部分 -->
     <build>
         <finalName>${project.artifactId}</finalName>
