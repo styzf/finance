@@ -1,4 +1,4 @@
-package com.styzf.sso.dto.user;
+package com.styzf.sso.dto;
 
 import com.styzf.core.common.base.BaseDTO;
 import io.swagger.annotations.ApiModel;
