@@ -35,7 +35,8 @@ public class UserController implements UserControllerDoc {
     public Response currentUser(HttpServletRequest request) {
         return SuccessResponseData.newInstance("hello");
     }
-
+    
+    @Override
     @GetMapping("users")
     public Response users(UserDTO request) {
         return SuccessResponseData.newInstance(userService.basePage(request));

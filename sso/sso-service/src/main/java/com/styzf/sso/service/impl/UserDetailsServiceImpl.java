@@ -1,11 +1,8 @@
 package com.styzf.sso.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.styzf.core.redis.RedisUtil;
-import com.styzf.sso.constant.UserRedisKey;
 import com.styzf.sso.dto.user.MenuDTO;
 import com.styzf.sso.dto.user.RoleDTO;
-import com.styzf.sso.dto.user.UserExt;
+import com.styzf.sso.dto.UserExt;
 import com.styzf.sso.service.UserService;
 import com.styzf.sso.util.UserUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -61,6 +58,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return null;
         }
         
+        userService.findUserByUsername(username);
         UserExt userext = userService.getUserExt(username);
         if(userext == null){
             //返回空给spring security表示用户不存在

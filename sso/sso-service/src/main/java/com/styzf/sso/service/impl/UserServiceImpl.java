@@ -5,7 +5,7 @@ import com.styzf.mybatis.base.BaseServiceImpl;
 import com.styzf.sso.dto.user.MenuDTO;
 import com.styzf.sso.dto.user.RoleDTO;
 import com.styzf.sso.dto.User;
-import com.styzf.sso.dto.user.UserExt;
+import com.styzf.sso.dto.UserExt;
 import com.styzf.sso.dto.user.UserDTO;
 import com.styzf.sso.mapper.CompanyUserMapper;
 import com.styzf.sso.mapper.MenuMapper;

@@ -2,7 +2,7 @@ package com.styzf.sso.service;
 
 import com.styzf.core.common.base.BaseService;
 import com.styzf.sso.dto.User;
-import com.styzf.sso.dto.user.UserExt;
+import com.styzf.sso.dto.UserExt;
 import com.styzf.sso.dto.user.UserDTO;
 
 /**
