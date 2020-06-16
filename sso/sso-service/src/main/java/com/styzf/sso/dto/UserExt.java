@@ -1,5 +1,8 @@
-package com.styzf.sso.dto.user;
+package com.styzf.sso.dto;
 
+import com.styzf.sso.dto.user.MenuDTO;
+import com.styzf.sso.dto.user.RoleDTO;
+import com.styzf.sso.dto.user.UserDTO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +21,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="用户扩展对象", description="用户扩展对象")
-public class UserExt extends UserDTO {
+public class UserExt extends User {
     
     /**
      * 权限信息
