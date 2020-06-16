@@ -1,10 +1,12 @@
 package com.styzf.sso.service.impl;
 
 import com.styzf.core.common.util.ConvertUtil;
+import com.styzf.mybatis.base.BaseServiceImpl;
 import com.styzf.sso.dto.user.MenuDTO;
 import com.styzf.sso.dto.user.RoleDTO;
-import com.styzf.sso.dto.UserDTO;
+import com.styzf.sso.dto.User;
 import com.styzf.sso.dto.user.UserExt;
+import com.styzf.sso.dto.user.UserDTO;
 import com.styzf.sso.mapper.CompanyUserMapper;
 import com.styzf.sso.mapper.MenuMapper;
 import com.styzf.sso.mapper.UserMapper;
@@ -25,7 +27,7 @@ import java.util.stream.Collectors;
  * @version 1.0
  **/
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<MyUser, UserDTO> implements UserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
     
     //根据账号查询xcUser信息
     @Override
-    public UserDTO findUserByUsername(String username){
+    public User findUserByUsername(String username){
         if (StringUtils.isEmpty(username)) {
             return null;
         }
@@ -53,14 +55,14 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         MyUser user = userList.get(0);
-        return ConvertUtil.convert(user, UserDTO.class);
+        return ConvertUtil.convert(user, User.class);
     }
 
     //根据账号查询用户信息
     @Override
     public UserExt getUserExt(String username){
         //根据账号查询xcUser信息
-        UserDTO user = this.findUserByUsername(username);
+        User user = this.findUserByUsername(username);
         if(user == null){
             return null;
         }
