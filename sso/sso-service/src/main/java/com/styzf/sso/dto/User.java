@@ -19,7 +19,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="用户对象", description="用户表")
-public class UserDTO extends BaseDTO {
+public class User extends BaseDTO {
     
     @ApiModelProperty(value = "用户名")
     private String username;

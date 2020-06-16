@@ -18,14 +18,10 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="用户对象", description="用户表")
-public class UserVO extends BaseDTO {
+public class UserDTO extends BaseDTO {
     
     @ApiModelProperty(value = "用户名")
     private String username;
-    
-    @ApiModelProperty(value = "用户密码")
-    private String password;
-    
     
     private String salt;
     
