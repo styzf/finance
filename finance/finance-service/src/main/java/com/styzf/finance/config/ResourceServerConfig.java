@@ -56,16 +56,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      * @return 公钥 Key
      */
     private String getPubKey() {
-        ClassLoader classLoader = this.getClass().getClassLoader();
-        String property = System.getProperty("user.dir");
-        log.info(property + File.separatorChar + PUBLIC_KEY);
+        String pubKeyFilePath = File.separatorChar  + PUBLIC_KEY;
+        ClassPathResource classPathResource = new ClassPathResource(pubKeyFilePath);
         
         try {
-            InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(property + File.separatorChar + PUBLIC_KEY));
+            InputStreamReader inputStreamReader = new InputStreamReader(classPathResource.getInputStream());
             BufferedReader br = new BufferedReader(inputStreamReader);
             return br.lines().collect(Collectors.joining("\n"));
         } catch (IOException ioe) {
-            
             log.error(JSON.toJSONString(ioe.getStackTrace()));
             return null;
         }
