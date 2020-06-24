@@ -59,9 +59,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         String pubKeyFilePath = File.separatorChar  + PUBLIC_KEY;
         ClassPathResource classPathResource = new ClassPathResource(pubKeyFilePath);
         
-        try {
+        try(
             InputStreamReader inputStreamReader = new InputStreamReader(classPathResource.getInputStream());
             BufferedReader br = new BufferedReader(inputStreamReader);
+        ) {
             return br.lines().collect(Collectors.joining("\n"));
         } catch (IOException ioe) {
             log.error(JSON.toJSONString(ioe.getStackTrace()));

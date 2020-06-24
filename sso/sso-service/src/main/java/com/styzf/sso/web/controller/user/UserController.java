@@ -3,6 +3,7 @@ package com.styzf.sso.web.controller.user;
 import com.styzf.core.common.response.Response;
 import com.styzf.core.common.response.SuccessResponseData;
 import com.styzf.sso.dto.request.LoginRequest;
+import com.styzf.sso.dto.request.UserSaveRequest;
 import com.styzf.sso.dto.user.UserDTO;
 import com.styzf.sso.service.UserService;
 import com.styzf.sso.web.doc.UserControllerDoc;
@@ -23,6 +24,12 @@ public class UserController implements UserControllerDoc {
 
     @Autowired
     private UserService userService;
+    
+    @PostMapping("save")
+     public Response save(@RequestBody UserSaveRequest request) {
+         userService.save(request);
+         return SuccessResponseData.newInstance();
+     }
     
     @GetMapping("notices")
     public Response login(@RequestBody LoginRequest loginRequest) {

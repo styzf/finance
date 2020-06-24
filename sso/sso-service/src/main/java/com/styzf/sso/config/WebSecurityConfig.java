@@ -31,6 +31,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
     @Override
     public void configure(HttpSecurity http) throws Exception {
         //所有请求必须认证通过

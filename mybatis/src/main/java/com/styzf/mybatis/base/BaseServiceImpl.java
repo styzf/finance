@@ -225,7 +225,7 @@ public abstract class BaseServiceImpl<P extends BasePO,D extends BaseDTO>
 	 * @param clazz
 	 * @return
 	 */
-	private <T> T newTclass(Class<T> clazz) {
+	protected <T> T newTclass(Class<T> clazz) {
 		try {
 			T a = clazz.newInstance();
 			return a;

@@ -1,7 +1,9 @@
 package com.styzf.sso.service.impl;
 
+import com.styzf.core.common.exception.BaseException;
 import com.styzf.core.common.util.ConvertUtil;
 import com.styzf.mybatis.base.BaseServiceImpl;
+import com.styzf.sso.dto.request.UserSaveRequest;
 import com.styzf.sso.dto.user.MenuDTO;
 import com.styzf.sso.dto.user.RoleDTO;
 import com.styzf.sso.dto.User;
@@ -14,12 +16,15 @@ import com.styzf.sso.po.MyUser;
 import com.styzf.sso.service.RoleService;
 import com.styzf.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.weekend.Weekend;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -40,6 +45,9 @@ public class UserServiceImpl extends BaseServiceImpl<MyUser, UserDTO> implements
 
     @Autowired
     private RoleService roleService;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     
     //根据账号查询xcUser信息
     @Override
@@ -91,6 +99,19 @@ public class UserServiceImpl extends BaseServiceImpl<MyUser, UserDTO> implements
 
         return xcUserExt;
 
+    }
+    
+    @Override
+    public void save(UserSaveRequest request) {
+        String password = request.getPassword();
+        String password2 = request.getPassword2();
+        if (! password.equals(password2)) {
+            throw new BaseException("两次输入的密码不一致");
+        }
+        password = passwordEncoder.encode(password);
+        MyUser user = ConvertUtil.convert(request, clazzP);
+        user.setPassword(password);
+        mapper.insertSelective(user);
     }
 
 }

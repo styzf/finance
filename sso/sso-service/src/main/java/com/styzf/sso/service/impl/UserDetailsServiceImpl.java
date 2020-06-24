@@ -82,10 +82,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         roleList.forEach(item-> userPermission.add(item.getRoleCode()));
         
         //使用静态的权限表示用户所拥有的权限
-        String user_permission_string  = StringUtils.join(userPermission.toArray(), ",");
+        String userPermissionString  = StringUtils.join(userPermission.toArray(), ",");
         UserJwt userDetails = new UserJwt(username,
                 password,
-                AuthorityUtils.commaSeparatedStringToAuthorityList(user_permission_string));
+                AuthorityUtils.commaSeparatedStringToAuthorityList(userPermissionString));
         userDetails.setId(userext.getId());
         userDetails.setUtype(userext.getUtype());//用户类型
         userDetails.setCompanyId(userext.getCompanyId());//所属企业

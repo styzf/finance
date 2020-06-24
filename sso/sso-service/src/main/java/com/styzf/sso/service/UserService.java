@@ -3,6 +3,7 @@ package com.styzf.sso.service;
 import com.styzf.core.common.base.BaseService;
 import com.styzf.sso.dto.User;
 import com.styzf.sso.dto.UserExt;
+import com.styzf.sso.dto.request.UserSaveRequest;
 import com.styzf.sso.dto.user.UserDTO;
 
 /**
@@ -25,4 +26,10 @@ public interface UserService extends BaseService<UserDTO> {
 	 * @return 用户的基础信息，权限菜单，公司id
 	 */
 	UserExt getUserExt(String username);
+	
+	/**
+	 * 新增用户
+	 * @param request
+	 */
+	void save(UserSaveRequest request);
 }

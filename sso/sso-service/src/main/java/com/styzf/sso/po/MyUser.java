@@ -31,7 +31,6 @@ public class MyUser extends BasePO {
     private String salt;
     
     @ApiModelProperty(value = "用户名")
-    
     private String name;
     
     @ApiModelProperty(value = "用户类型")
