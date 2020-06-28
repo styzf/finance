@@ -56,7 +56,7 @@ public class UserServiceImpl extends BaseServiceImpl<MyUser, UserDTO> implements
             return null;
         }
         Weekend<MyUser> weekend = Weekend.of(MyUser.class);
-        weekend.weekendCriteria().andEqualTo(MyUser::getUsername, username);
+        weekend.weekendCriteria().andEqualTo(MyUser::getUserName, username);
     
         List<MyUser> userList = userMapper.selectByExample(weekend);
         if (CollectionUtils.isEmpty(userList)) {
