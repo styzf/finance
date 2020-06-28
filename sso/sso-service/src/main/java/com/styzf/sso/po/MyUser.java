@@ -23,7 +23,7 @@ import javax.persistence.Table;
 public class MyUser extends BasePO {
     
     @ApiModelProperty(value = "用户名")
-    private String username;
+    private String userName;
     
     @ApiModelProperty(value = "用户密码")
     private String password;
