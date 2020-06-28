@@ -12,6 +12,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class UserController implements UserControllerDoc {
     private UserService userService;
     
     @PostMapping("save")
-     public Response save(@RequestBody UserSaveRequest request) {
+     public Response save(@RequestBody @Valid UserSaveRequest request) {
          userService.save(request);
          return SuccessResponseData.newInstance();
      }
