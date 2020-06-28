@@ -103,6 +103,14 @@ public class UserServiceImpl extends BaseServiceImpl<MyUser, UserDTO> implements
     
     @Override
     public void save(UserSaveRequest request) {
+        String userName = request.getUserName();
+        MyUser uniq = new MyUser();
+        uniq.setUserName(userName);
+        MyUser myUser = mapper.selectOne(uniq);
+        if (Objects.nonNull(myUser)) {
+            throw new BaseException("该用户名已注册");
+        }
+    
         String password = request.getPassword();
         String password2 = request.getPassword2();
         if (! password.equals(password2)) {
