@@ -1,15 +1,11 @@
 package com.styzf.finance.config;
 
 import com.alibaba.fastjson.JSON;
-import com.styzf.core.web.config.swagger2.ApiInfoProperties;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -37,7 +33,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     
     //公钥
     private static final String PUBLIC_KEY = "publickey.txt";
-
+    
     //定义JwtTokenStore，使用jwt令牌
     @Bean
     public TokenStore tokenStore(JwtAccessTokenConverter jwtAccessTokenConverter) {
@@ -56,11 +52,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      * @return 公钥 Key
      */
     private String getPubKey() {
-        String pubKeyFilePath = File.separatorChar  + PUBLIC_KEY;
-        ClassPathResource classPathResource = new ClassPathResource(pubKeyFilePath);
+        String pubKeyFilePath = File.separatorChar + "usr" +
+                File.separatorChar + "src" +
+                File.separatorChar + "myapp" +
+                File.separatorChar  + PUBLIC_KEY;
         
         try(
-            InputStreamReader inputStreamReader = new InputStreamReader(classPathResource.getInputStream());
+            InputStream is = new FileInputStream(pubKeyFilePath);
+            InputStreamReader inputStreamReader = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(inputStreamReader);
         ) {
             return br.lines().collect(Collectors.joining("\n"));
