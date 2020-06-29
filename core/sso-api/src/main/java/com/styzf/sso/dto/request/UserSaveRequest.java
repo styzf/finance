@@ -14,6 +14,16 @@ import javax.validation.constraints.NotBlank;
 public class UserSaveRequest {
     
     /**
+     * 邮箱
+     */
+    private String email;
+    
+    /**
+     * 手机号码
+     */
+    private String phone;
+    
+    /**
      * 用户名，暂无要求
      */
     private String name;
