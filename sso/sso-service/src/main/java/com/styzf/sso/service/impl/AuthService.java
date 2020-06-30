@@ -64,11 +64,11 @@ public class AuthService {
             throw new BaseException("认证失败");
         }
         //用户身份令牌
-        String access_token = authToken.getAccess_token();
+        String accessToken = authToken.getAccess_token();
         //存储到redis中的内容
         String jsonString = JSON.toJSONString(authToken);
         //将令牌存储到redis
-        boolean result = this.saveToken(access_token, jsonString, tokenValiditySeconds);
+        boolean result = this.saveToken(accessToken, jsonString, tokenValiditySeconds);
         if (!result) {
             throw new BaseException("");
         }
