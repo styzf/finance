@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 返回实体类的父类
  * @author styzf
- * @date 2018年7月28日 
+ * @date 2018年7月28日
  *
  */
 @Data
@@ -22,7 +22,7 @@ public class LoginResponse extends Response {
     }
     
     public LoginResponse(List<String> authList) {
-        this(CollectionUtils.isNotEmpty(authList), null, null, authList);
+        this(Boolean.TRUE, null, null, authList);
     }
     
     public LoginResponse(String token) {
