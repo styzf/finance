@@ -19,6 +19,4 @@ public interface UserControllerDoc extends BaseControllerDoc<UserDTO> {
     @ApiOperation("获取当前登录用户数据")
     public Response currentUser(HttpServletRequest request);
     
-    @ApiOperation("删除用户列表数据")
-    public Response remove(List<Long> ids);
 }
