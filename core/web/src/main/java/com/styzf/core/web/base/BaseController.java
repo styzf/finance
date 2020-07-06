@@ -30,7 +30,7 @@ import java.util.Objects;
  */
 @Slf4j
 @RestController
-public abstract class BaseController<D extends BaseDTO> implements BaseControllerDoc {
+public abstract class BaseController<D extends BaseDTO> implements BaseControllerDoc<D> {
 
     @Autowired
     private BaseService<D> service;
@@ -59,6 +59,7 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
      * 列表查询
      * @return
      */
+    @Override
     @GetMapping("list")
     public Response baseList(@RequestBody D d) {
         d = beforeList(d);
@@ -79,6 +80,7 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
      * 分页管理
      * @return
      */
+    @Override
     @GetMapping("page")
     public Response basePage(@RequestBody D d) {
         d = beforePage(d);
@@ -95,6 +97,7 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
         return page;
     }
     
+    @Override
     @PostMapping
     public Response baseAdd(@RequestBody @Valid D d) {
         d= beforeAdd(d);
@@ -114,6 +117,7 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
         return d;
     }
     
+    @Override
     @PutMapping
     public Response baseUpdate(@RequestBody @Valid D d) {
         d = beforeUpdate(d);
@@ -133,6 +137,7 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
         return d;
     }
     
+    @Override
     @DeleteMapping("/{id}")
     public Response baseDeleteById(@PathVariable Serializable id) {
         D d = ObjectUtil.newTclass(clazzD);
