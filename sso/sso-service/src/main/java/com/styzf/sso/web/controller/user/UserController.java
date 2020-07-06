@@ -2,6 +2,7 @@ package com.styzf.sso.web.controller.user;
 
 import com.styzf.core.common.response.Response;
 import com.styzf.core.common.response.SuccessResponseData;
+import com.styzf.core.web.base.BaseController;
 import com.styzf.sso.dto.request.LoginRequest;
 import com.styzf.sso.dto.request.UserSaveRequest;
 import com.styzf.sso.dto.user.UserDTO;
@@ -21,7 +22,7 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/user")
-public class UserController implements UserControllerDoc {
+public class UserController extends BaseController<UserDTO> implements UserControllerDoc {
 
     @Autowired
     private UserService userService;

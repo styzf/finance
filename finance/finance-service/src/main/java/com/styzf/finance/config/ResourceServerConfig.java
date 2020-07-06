@@ -64,7 +64,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         ) {
             return br.lines().collect(Collectors.joining("\n"));
         } catch (IOException ioe) {
-            log.error(JSON.toJSONString(ioe.getStackTrace()));
+            log.error(JSON.toJSONString(ioe.getSuppressed()));
             return null;
         }
     }
