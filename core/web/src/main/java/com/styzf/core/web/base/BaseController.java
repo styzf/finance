@@ -61,7 +61,7 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
      */
     @Override
     @GetMapping("list")
-    public Response baseList(@RequestBody D d) {
+    public Response baseList(D d) {
         d = beforeList(d);
         List<D> list = service.baseList(d);
         list = afterList(d, list);
@@ -82,7 +82,7 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
      */
     @Override
     @GetMapping("page")
-    public Response basePage(@RequestBody D d) {
+    public Response basePage(D d) {
         d = beforePage(d);
         Pager<D> page = service.basePage(d);
         page = afterPage(d, page);
