@@ -33,7 +33,7 @@ import java.util.Objects;
 public abstract class BaseController<D extends BaseDTO> implements BaseControllerDoc<D> {
 
     @Autowired
-    private BaseService<D> service;
+    protected BaseService<D> service;
     
     protected Class<D> clazzD;
     
