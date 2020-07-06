@@ -45,12 +45,6 @@ public class UserController extends BaseController<UserDTO> implements UserContr
     }
     
     @Override
-    @GetMapping("list")
-    public Response users(UserDTO request) {
-        return SuccessResponseData.newInstance(userService.basePage(request));
-        
-    }
-    @Override
     @DeleteMapping("remove")
     public Response remove(@RequestBody List<Long> ids) {
         if (CollectionUtils.isEmpty(ids)) {
