@@ -44,17 +44,4 @@ public class UserController extends BaseController<UserDTO> implements UserContr
         return SuccessResponseData.newInstance("hello");
     }
     
-    @Override
-    @DeleteMapping("remove")
-    public Response remove(@RequestBody List<Long> ids) {
-        if (CollectionUtils.isEmpty(ids)) {
-            return SuccessResponseData.newInstance();
-        }
-        ids.stream().forEach(id -> {
-            userService.baseDeleteById(id, null);
-        });
-        return SuccessResponseData.newInstance();
-    }
-    
-    
 }
