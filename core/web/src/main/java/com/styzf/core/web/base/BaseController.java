@@ -8,6 +8,7 @@ import com.styzf.core.common.response.Response;
 import com.styzf.core.common.response.SuccessResponseData;
 import com.styzf.core.common.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -154,4 +155,15 @@ public abstract class BaseController<D extends BaseDTO> implements BaseControlle
         return d;
     }
     
+    @Override
+    @DeleteMapping("remove")
+    public Response remove(@RequestBody List<Long> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            return SuccessResponseData.newInstance();
+        }
+        ids.stream().forEach(id -> {
+            baseDeleteById(id);
+        });
+        return SuccessResponseData.newInstance();
+    }
 }

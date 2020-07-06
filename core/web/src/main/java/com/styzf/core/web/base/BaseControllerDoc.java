@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author styzf
@@ -30,4 +31,7 @@ public interface BaseControllerDoc <D extends BaseDTO> {
     
     @ApiOperation("基础接口：删除数据")
     public Response baseDeleteById(Serializable id);
+    
+    @ApiOperation("基础接口：批量删除数据")
+    public Response remove(List<Long> ids);
 }
