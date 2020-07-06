@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2019-12-31
  */
 @Api(value = "用户信息",description = "用户信息接口")
-public interface UserControllerDoc extends BaseControllerDoc {
+public interface UserControllerDoc extends BaseControllerDoc<UserDTO> {
     @ApiOperation("获取当前登录用户数据")
     public Response currentUser(HttpServletRequest request);
     
