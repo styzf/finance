@@ -23,13 +23,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController extends BaseController<UserDTO> implements UserControllerDoc {
-
-    @Autowired
-    private UserService userService;
     
     @PostMapping("save")
      public Response save(@RequestBody @Valid UserSaveRequest request) {
-         userService.save(request);
+         ((UserService) service).save(request);
          return SuccessResponseData.newInstance();
      }
     
