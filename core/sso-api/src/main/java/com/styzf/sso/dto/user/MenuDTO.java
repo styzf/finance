@@ -22,7 +22,7 @@ public class MenuDTO extends BaseDTO {
     
     private String code;
     private String pCode;
-    private String pId;
+    private Long pId;
     private String menuName;
     private String url;
     private String isMenu;
