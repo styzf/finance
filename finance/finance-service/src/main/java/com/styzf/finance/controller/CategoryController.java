@@ -23,7 +23,7 @@ import java.util.List;
  * 类别表 前端控制器
  * </p>
  *
- * @author yangzf
+ * @author styzf
  * @since 2019-04-05
  */
 @RestController
@@ -80,7 +80,7 @@ public class CategoryController implements CategoryControllerDoc {
 		if (CollectionUtils.isEmpty(categoryIds)) {
 			return SuccessResponseData.newInstance();
 		}
-		categoryIds.stream().forEach(id -> {
+		categoryIds.forEach(id -> {
 			categoryService.baseDeleteById(id, null);
 		});
 		return SuccessResponseData.newInstance();
