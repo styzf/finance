@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * 类别表
  * </p>
  *
- * @author yangzf
+ * @author styzf
  * @since 2019-04-05
  */
 @Data
@@ -40,6 +40,6 @@ public class CategoryDTO extends BaseDTO {
     @ApiModelProperty(value = "父类关键key")
     private String parentKey;
     
-    public static void main(String[] args) {
-    }
+    @ApiModelProperty(value = "值")
+    private String value;
 }

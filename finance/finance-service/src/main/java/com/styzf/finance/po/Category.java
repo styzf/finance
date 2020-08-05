@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  * 类别表
  * </p>
  *
- * @author yangzf
+ * @author styzf
  * @since 2019-04-05
  */
 @Data
@@ -40,4 +40,7 @@ public class Category extends BasePO {
     
     @ApiModelProperty(value = "父类关键key")
     private String parentKey;
+    
+    @ApiModelProperty(value = "值")
+    private String value;
 }
