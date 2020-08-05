@@ -41,5 +41,7 @@ public class CategoryAddRequest extends BaseRequest {
 	@ApiModelProperty(value = "分类查找key")
 	private String categoryKey;
 	
+	@ApiModelProperty(value = "值")
+	private String value;
 }
 
