@@ -9,3 +9,4 @@ ADD ${JAR_PATH}/*.jar /usr/src/myapp/ROOT.jar
 WORKDIR /usr/src/myapp
 
 CMD ["java", "-Duser.timezone=UTC", "-Xmx512m","-jar","/usr/src/myapp/ROOT.jar"]
+ 
