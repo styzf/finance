@@ -23,7 +23,7 @@
     </modules>
 
     <properties>
-        <fastjson.version>1.2.55</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <swagger.version>2.7.0</swagger.version>
     </properties>
     <dependencies>
