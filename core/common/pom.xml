@@ -9,7 +9,7 @@
     <version>${project.parent.version}</version>
 
     <properties>
-        <fastjson.version>1.2.55</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <dependencies>
